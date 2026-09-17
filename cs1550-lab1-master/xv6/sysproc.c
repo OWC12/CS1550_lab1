@@ -91,6 +91,10 @@ sys_uptime(void)
 }
 
 int
-sys_getcount(void){
-	return 0;    
+sys_getcount(int n){
+	if(n >= 0 && n <= 22){
+		return myproc()->syscs[n];
+	}
+	return -1;    
 }
+
