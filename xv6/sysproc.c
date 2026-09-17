@@ -98,7 +98,9 @@ sys_getcount(void){
 		calls =  -1;
 	}
 	else if(n <= 22){
+		acquire(&tickslock);
 		calls = myproc()->syscs[n-1];
+		release(&tickslock);
 	}
 	return calls;    
 }
