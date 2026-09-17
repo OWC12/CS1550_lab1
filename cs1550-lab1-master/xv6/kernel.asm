@@ -521,7 +521,7 @@ cli(void)
 801003c1:	ff 75 08             	pushl  0x8(%ebp)
 801003c4:	e8 e7 02 00 00       	call   801006b0 <cprintf>
   cprintf("\n");
-801003c9:	c7 04 24 37 7a 10 80 	movl   $0x80107a37,(%esp)
+801003c9:	c7 04 24 3b 7a 10 80 	movl   $0x80107a3b,(%esp)
 801003d0:	e8 db 02 00 00       	call   801006b0 <cprintf>
   getcallerpcs(&s, pcs);
 801003d5:	8d 45 08             	lea    0x8(%ebp),%eax
@@ -3949,7 +3949,7 @@ namex(char *path, int nameiparent, char *name)
 80102018:	e8 73 e3 ff ff       	call   80100390 <panic>
     panic("dirlink");
 8010201d:	83 ec 0c             	sub    $0xc,%esp
-80102020:	68 1e 78 10 80       	push   $0x8010781e
+80102020:	68 22 78 10 80       	push   $0x80107822
 80102025:	e8 66 e3 ff ff       	call   80100390 <panic>
 8010202a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
 
@@ -7041,7 +7041,7 @@ found:
   sp -= sizeof *p->tf;
 80103804:	89 53 18             	mov    %edx,0x18(%ebx)
   *(uint*)sp = (uint)trapret;
-80103807:	c7 40 14 86 58 10 80 	movl   $0x80105886,0x14(%eax)
+80103807:	c7 40 14 8f 58 10 80 	movl   $0x8010588f,0x14(%eax)
   p->context = (struct context*)sp;
 8010380e:	89 43 1c             	mov    %eax,0x1c(%ebx)
   memset(p->context, 0, sizeof *p->context);
@@ -8169,7 +8169,7 @@ procdump(void)
     }
     cprintf("\n");
 801041f0:	83 ec 0c             	sub    $0xc,%esp
-801041f3:	68 37 7a 10 80       	push   $0x80107a37
+801041f3:	68 3b 7a 10 80       	push   $0x80107a3b
 801041f8:	e8 b3 c4 ff ff       	call   801006b0 <cprintf>
 801041fd:	83 c4 10             	add    $0x10,%esp
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
@@ -9434,7 +9434,7 @@ argstr(int n, char **pp)
 80104a3e:	66 90                	xchg   %ax,%ax
 
 80104a40 <syscall>:
-[SYS_close]   sys_close,
+[SYS_getcount] sys_getcount,
 };
 
 void
@@ -9455,7 +9455,7 @@ syscall(void)
 80104a55:	8b 40 1c             	mov    0x1c(%eax),%eax
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
 80104a58:	8d 50 ff             	lea    -0x1(%eax),%edx
-80104a5b:	83 fa 14             	cmp    $0x14,%edx
+80104a5b:	83 fa 15             	cmp    $0x15,%edx
 80104a5e:	77 20                	ja     80104a80 <syscall+0x40>
 80104a60:	8b 14 85 a0 77 10 80 	mov    -0x7fef8860(,%eax,4),%edx
 80104a67:	85 d2                	test   %edx,%edx
@@ -9659,7 +9659,7 @@ create(char *path, short type, short major, short minor)
     if(dirlink(ip, ".", ip->inum) < 0 || dirlink(ip, "..", dp->inum) < 0)
 80104bde:	83 c4 0c             	add    $0xc,%esp
 80104be1:	ff 76 04             	pushl  0x4(%esi)
-80104be4:	68 14 78 10 80       	push   $0x80107814
+80104be4:	68 18 78 10 80       	push   $0x80107818
 80104be9:	56                   	push   %esi
 80104bea:	e8 81 d3 ff ff       	call   80101f70 <dirlink>
 80104bef:	83 c4 10             	add    $0x10,%esp
@@ -9667,7 +9667,7 @@ create(char *path, short type, short major, short minor)
 80104bf4:	78 18                	js     80104c0e <create+0x15e>
 80104bf6:	83 ec 04             	sub    $0x4,%esp
 80104bf9:	ff 73 04             	pushl  0x4(%ebx)
-80104bfc:	68 13 78 10 80       	push   $0x80107813
+80104bfc:	68 17 78 10 80       	push   $0x80107817
 80104c01:	56                   	push   %esi
 80104c02:	e8 69 d3 ff ff       	call   80101f70 <dirlink>
 80104c07:	83 c4 10             	add    $0x10,%esp
@@ -9675,7 +9675,7 @@ create(char *path, short type, short major, short minor)
 80104c0c:	79 92                	jns    80104ba0 <create+0xf0>
       panic("create dots");
 80104c0e:	83 ec 0c             	sub    $0xc,%esp
-80104c11:	68 07 78 10 80       	push   $0x80107807
+80104c11:	68 0b 78 10 80       	push   $0x8010780b
 80104c16:	e8 75 b7 ff ff       	call   80100390 <panic>
 80104c1b:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
 80104c1f:	90                   	nop
@@ -9692,11 +9692,11 @@ create(char *path, short type, short major, short minor)
 80104c2b:	c3                   	ret    
     panic("create: dirlink");
 80104c2c:	83 ec 0c             	sub    $0xc,%esp
-80104c2f:	68 16 78 10 80       	push   $0x80107816
+80104c2f:	68 1a 78 10 80       	push   $0x8010781a
 80104c34:	e8 57 b7 ff ff       	call   80100390 <panic>
     panic("create: ialloc");
 80104c39:	83 ec 0c             	sub    $0xc,%esp
-80104c3c:	68 f8 77 10 80       	push   $0x801077f8
+80104c3c:	68 fc 77 10 80       	push   $0x801077fc
 80104c41:	e8 4a b7 ff ff       	call   80100390 <panic>
 80104c46:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
 80104c4d:	8d 76 00             	lea    0x0(%esi),%esi
@@ -10178,14 +10178,14 @@ argfd(int n, int *pfd, struct file **pf)
   if(namecmp(name, ".") == 0 || namecmp(name, "..") == 0)
 8010502d:	58                   	pop    %eax
 8010502e:	5a                   	pop    %edx
-8010502f:	68 14 78 10 80       	push   $0x80107814
+8010502f:	68 18 78 10 80       	push   $0x80107818
 80105034:	53                   	push   %ebx
 80105035:	e8 56 cc ff ff       	call   80101c90 <namecmp>
 8010503a:	83 c4 10             	add    $0x10,%esp
 8010503d:	85 c0                	test   %eax,%eax
 8010503f:	0f 84 03 01 00 00    	je     80105148 <sys_unlink+0x168>
 80105045:	83 ec 08             	sub    $0x8,%esp
-80105048:	68 13 78 10 80       	push   $0x80107813
+80105048:	68 17 78 10 80       	push   $0x80107817
 8010504d:	53                   	push   %ebx
 8010504e:	e8 3d cc ff ff       	call   80101c90 <namecmp>
 80105053:	83 c4 10             	add    $0x10,%esp
@@ -10319,15 +10319,15 @@ argfd(int n, int *pfd, struct file **pf)
 80105194:	e9 59 ff ff ff       	jmp    801050f2 <sys_unlink+0x112>
       panic("isdirempty: readi");
 80105199:	83 ec 0c             	sub    $0xc,%esp
-8010519c:	68 38 78 10 80       	push   $0x80107838
+8010519c:	68 3c 78 10 80       	push   $0x8010783c
 801051a1:	e8 ea b1 ff ff       	call   80100390 <panic>
     panic("unlink: writei");
 801051a6:	83 ec 0c             	sub    $0xc,%esp
-801051a9:	68 4a 78 10 80       	push   $0x8010784a
+801051a9:	68 4e 78 10 80       	push   $0x8010784e
 801051ae:	e8 dd b1 ff ff       	call   80100390 <panic>
     panic("unlink: nlink < 1");
 801051b3:	83 ec 0c             	sub    $0xc,%esp
-801051b6:	68 26 78 10 80       	push   $0x80107826
+801051b6:	68 2a 78 10 80       	push   $0x8010782a
 801051bb:	e8 d0 b1 ff ff       	call   80100390 <panic>
 
 801051c0 <sys_open>:
@@ -11249,67 +11249,73 @@ sys_uptime(void)
 80105869:	8b 5d fc             	mov    -0x4(%ebp),%ebx
 8010586c:	c9                   	leave  
 8010586d:	c3                   	ret    
+8010586e:	66 90                	xchg   %ax,%ax
 
-8010586e <alltraps>:
+80105870 <sys_getcount>:
+
+int
+sys_getcount(void){
+80105870:	f3 0f 1e fb          	endbr32 
+	return 0;    
+}
+80105874:	31 c0                	xor    %eax,%eax
+80105876:	c3                   	ret    
+
+80105877 <alltraps>:
 
   # vectors.S sends all traps here.
 .globl alltraps
 alltraps:
   # Build trap frame.
   pushl %ds
-8010586e:	1e                   	push   %ds
+80105877:	1e                   	push   %ds
   pushl %es
-8010586f:	06                   	push   %es
+80105878:	06                   	push   %es
   pushl %fs
-80105870:	0f a0                	push   %fs
+80105879:	0f a0                	push   %fs
   pushl %gs
-80105872:	0f a8                	push   %gs
+8010587b:	0f a8                	push   %gs
   pushal
-80105874:	60                   	pusha  
+8010587d:	60                   	pusha  
   
   # Set up data segments.
   movw $(SEG_KDATA<<3), %ax
-80105875:	66 b8 10 00          	mov    $0x10,%ax
+8010587e:	66 b8 10 00          	mov    $0x10,%ax
   movw %ax, %ds
-80105879:	8e d8                	mov    %eax,%ds
+80105882:	8e d8                	mov    %eax,%ds
   movw %ax, %es
-8010587b:	8e c0                	mov    %eax,%es
+80105884:	8e c0                	mov    %eax,%es
 
   # Call trap(tf), where tf=%esp
   pushl %esp
-8010587d:	54                   	push   %esp
+80105886:	54                   	push   %esp
   call trap
-8010587e:	e8 cd 00 00 00       	call   80105950 <trap>
+80105887:	e8 c4 00 00 00       	call   80105950 <trap>
   addl $4, %esp
-80105883:	83 c4 04             	add    $0x4,%esp
+8010588c:	83 c4 04             	add    $0x4,%esp
 
-80105886 <trapret>:
+8010588f <trapret>:
 
   # Return falls through to trapret...
 .globl trapret
 trapret:
   popal
-80105886:	61                   	popa   
+8010588f:	61                   	popa   
   popl %gs
-80105887:	0f a9                	pop    %gs
+80105890:	0f a9                	pop    %gs
   popl %fs
-80105889:	0f a1                	pop    %fs
+80105892:	0f a1                	pop    %fs
   popl %es
-8010588b:	07                   	pop    %es
+80105894:	07                   	pop    %es
   popl %ds
-8010588c:	1f                   	pop    %ds
+80105895:	1f                   	pop    %ds
   addl $0x8, %esp  # trapno and errcode
-8010588d:	83 c4 08             	add    $0x8,%esp
+80105896:	83 c4 08             	add    $0x8,%esp
   iret
-80105890:	cf                   	iret   
-80105891:	66 90                	xchg   %ax,%ax
-80105893:	66 90                	xchg   %ax,%ax
-80105895:	66 90                	xchg   %ax,%ax
-80105897:	66 90                	xchg   %ax,%ax
-80105899:	66 90                	xchg   %ax,%ax
-8010589b:	66 90                	xchg   %ax,%ax
-8010589d:	66 90                	xchg   %ax,%ax
-8010589f:	90                   	nop
+80105899:	cf                   	iret   
+8010589a:	66 90                	xchg   %ax,%ax
+8010589c:	66 90                	xchg   %ax,%ax
+8010589e:	66 90                	xchg   %ax,%ax
 
 801058a0 <tvinit>:
 struct spinlock tickslock;
@@ -11350,7 +11356,7 @@ tvinit(void)
 801058e7:	c7 05 a2 4e 11 80 08 	movl   $0xef000008,0x80114ea2
 801058ee:	00 00 ef 
   initlock(&tickslock, "time");
-801058f1:	68 59 78 10 80       	push   $0x80107859
+801058f1:	68 5d 78 10 80       	push   $0x8010785d
 801058f6:	68 60 4c 11 80       	push   $0x80114c60
   SETGATE(idt[T_SYSCALL], 1, SEG_KCODE<<3, vectors[T_SYSCALL], DPL_USER);
 801058fb:	66 a3 a0 4e 11 80    	mov    %ax,0x80114ea0
@@ -11421,7 +11427,7 @@ trap(struct trapframe *tf)
 8010596c:	83 e8 20             	sub    $0x20,%eax
 8010596f:	83 f8 1f             	cmp    $0x1f,%eax
 80105972:	77 08                	ja     8010597c <trap+0x2c>
-80105974:	3e ff 24 85 00 79 10 	notrack jmp *-0x7fef8700(,%eax,4)
+80105974:	3e ff 24 85 04 79 10 	notrack jmp *-0x7fef86fc(,%eax,4)
 8010597b:	80 
     lapiceoi();
     break;
@@ -11473,7 +11479,7 @@ rcr2(void)
     cprintf("pid %d %s: trap %d err %d on cpu %d "
 801059cd:	56                   	push   %esi
 801059ce:	ff 70 10             	pushl  0x10(%eax)
-801059d1:	68 bc 78 10 80       	push   $0x801078bc
+801059d1:	68 c0 78 10 80       	push   $0x801078c0
 801059d6:	e8 d5 ac ff ff       	call   801006b0 <cprintf>
             tf->err, cpuid(), tf->eip, rcr2());
     myproc()->killed = 1;
@@ -11586,7 +11592,7 @@ rcr2(void)
 80105ae9:	57                   	push   %edi
 80105aea:	56                   	push   %esi
 80105aeb:	50                   	push   %eax
-80105aec:	68 64 78 10 80       	push   $0x80107864
+80105aec:	68 68 78 10 80       	push   $0x80107868
 80105af1:	e8 ba ab ff ff       	call   801006b0 <cprintf>
     lapiceoi();
 80105af6:	e8 c5 cd ff ff       	call   801028c0 <lapiceoi>
@@ -11643,11 +11649,11 @@ rcr2(void)
 80105b83:	57                   	push   %edi
 80105b84:	50                   	push   %eax
 80105b85:	ff 73 30             	pushl  0x30(%ebx)
-80105b88:	68 88 78 10 80       	push   $0x80107888
+80105b88:	68 8c 78 10 80       	push   $0x8010788c
 80105b8d:	e8 1e ab ff ff       	call   801006b0 <cprintf>
       panic("trap");
 80105b92:	83 c4 14             	add    $0x14,%esp
-80105b95:	68 5e 78 10 80       	push   $0x8010785e
+80105b95:	68 62 78 10 80       	push   $0x80107862
 80105b9a:	e8 f1 a7 ff ff       	call   80100390 <panic>
 80105b9f:	90                   	nop
 
@@ -11773,7 +11779,7 @@ uartputc(int c)
 80105c90:	83 ec 08             	sub    $0x8,%esp
 80105c93:	be 76 00 00 00       	mov    $0x76,%esi
   for(p="xv6...\n"; *p; p++)
-80105c98:	bb 80 79 10 80       	mov    $0x80107980,%ebx
+80105c98:	bb 84 79 10 80       	mov    $0x80107984,%ebx
   ioapicenable(IRQ_COM1, 0);
 80105c9d:	6a 00                	push   $0x0
 80105c9f:	6a 04                	push   $0x4
@@ -11854,7 +11860,7 @@ vector0:
   pushl $0
 80105d2b:	6a 00                	push   $0x0
   jmp alltraps
-80105d2d:	e9 3c fb ff ff       	jmp    8010586e <alltraps>
+80105d2d:	e9 45 fb ff ff       	jmp    80105877 <alltraps>
 
 80105d32 <vector1>:
 .globl vector1
@@ -11864,7 +11870,7 @@ vector1:
   pushl $1
 80105d34:	6a 01                	push   $0x1
   jmp alltraps
-80105d36:	e9 33 fb ff ff       	jmp    8010586e <alltraps>
+80105d36:	e9 3c fb ff ff       	jmp    80105877 <alltraps>
 
 80105d3b <vector2>:
 .globl vector2
@@ -11874,7 +11880,7 @@ vector2:
   pushl $2
 80105d3d:	6a 02                	push   $0x2
   jmp alltraps
-80105d3f:	e9 2a fb ff ff       	jmp    8010586e <alltraps>
+80105d3f:	e9 33 fb ff ff       	jmp    80105877 <alltraps>
 
 80105d44 <vector3>:
 .globl vector3
@@ -11884,7 +11890,7 @@ vector3:
   pushl $3
 80105d46:	6a 03                	push   $0x3
   jmp alltraps
-80105d48:	e9 21 fb ff ff       	jmp    8010586e <alltraps>
+80105d48:	e9 2a fb ff ff       	jmp    80105877 <alltraps>
 
 80105d4d <vector4>:
 .globl vector4
@@ -11894,7 +11900,7 @@ vector4:
   pushl $4
 80105d4f:	6a 04                	push   $0x4
   jmp alltraps
-80105d51:	e9 18 fb ff ff       	jmp    8010586e <alltraps>
+80105d51:	e9 21 fb ff ff       	jmp    80105877 <alltraps>
 
 80105d56 <vector5>:
 .globl vector5
@@ -11904,7 +11910,7 @@ vector5:
   pushl $5
 80105d58:	6a 05                	push   $0x5
   jmp alltraps
-80105d5a:	e9 0f fb ff ff       	jmp    8010586e <alltraps>
+80105d5a:	e9 18 fb ff ff       	jmp    80105877 <alltraps>
 
 80105d5f <vector6>:
 .globl vector6
@@ -11914,7 +11920,7 @@ vector6:
   pushl $6
 80105d61:	6a 06                	push   $0x6
   jmp alltraps
-80105d63:	e9 06 fb ff ff       	jmp    8010586e <alltraps>
+80105d63:	e9 0f fb ff ff       	jmp    80105877 <alltraps>
 
 80105d68 <vector7>:
 .globl vector7
@@ -11924,7 +11930,7 @@ vector7:
   pushl $7
 80105d6a:	6a 07                	push   $0x7
   jmp alltraps
-80105d6c:	e9 fd fa ff ff       	jmp    8010586e <alltraps>
+80105d6c:	e9 06 fb ff ff       	jmp    80105877 <alltraps>
 
 80105d71 <vector8>:
 .globl vector8
@@ -11932,7 +11938,7 @@ vector8:
   pushl $8
 80105d71:	6a 08                	push   $0x8
   jmp alltraps
-80105d73:	e9 f6 fa ff ff       	jmp    8010586e <alltraps>
+80105d73:	e9 ff fa ff ff       	jmp    80105877 <alltraps>
 
 80105d78 <vector9>:
 .globl vector9
@@ -11942,7 +11948,7 @@ vector9:
   pushl $9
 80105d7a:	6a 09                	push   $0x9
   jmp alltraps
-80105d7c:	e9 ed fa ff ff       	jmp    8010586e <alltraps>
+80105d7c:	e9 f6 fa ff ff       	jmp    80105877 <alltraps>
 
 80105d81 <vector10>:
 .globl vector10
@@ -11950,7 +11956,7 @@ vector10:
   pushl $10
 80105d81:	6a 0a                	push   $0xa
   jmp alltraps
-80105d83:	e9 e6 fa ff ff       	jmp    8010586e <alltraps>
+80105d83:	e9 ef fa ff ff       	jmp    80105877 <alltraps>
 
 80105d88 <vector11>:
 .globl vector11
@@ -11958,7 +11964,7 @@ vector11:
   pushl $11
 80105d88:	6a 0b                	push   $0xb
   jmp alltraps
-80105d8a:	e9 df fa ff ff       	jmp    8010586e <alltraps>
+80105d8a:	e9 e8 fa ff ff       	jmp    80105877 <alltraps>
 
 80105d8f <vector12>:
 .globl vector12
@@ -11966,7 +11972,7 @@ vector12:
   pushl $12
 80105d8f:	6a 0c                	push   $0xc
   jmp alltraps
-80105d91:	e9 d8 fa ff ff       	jmp    8010586e <alltraps>
+80105d91:	e9 e1 fa ff ff       	jmp    80105877 <alltraps>
 
 80105d96 <vector13>:
 .globl vector13
@@ -11974,7 +11980,7 @@ vector13:
   pushl $13
 80105d96:	6a 0d                	push   $0xd
   jmp alltraps
-80105d98:	e9 d1 fa ff ff       	jmp    8010586e <alltraps>
+80105d98:	e9 da fa ff ff       	jmp    80105877 <alltraps>
 
 80105d9d <vector14>:
 .globl vector14
@@ -11982,7 +11988,7 @@ vector14:
   pushl $14
 80105d9d:	6a 0e                	push   $0xe
   jmp alltraps
-80105d9f:	e9 ca fa ff ff       	jmp    8010586e <alltraps>
+80105d9f:	e9 d3 fa ff ff       	jmp    80105877 <alltraps>
 
 80105da4 <vector15>:
 .globl vector15
@@ -11992,7 +11998,7 @@ vector15:
   pushl $15
 80105da6:	6a 0f                	push   $0xf
   jmp alltraps
-80105da8:	e9 c1 fa ff ff       	jmp    8010586e <alltraps>
+80105da8:	e9 ca fa ff ff       	jmp    80105877 <alltraps>
 
 80105dad <vector16>:
 .globl vector16
@@ -12002,7 +12008,7 @@ vector16:
   pushl $16
 80105daf:	6a 10                	push   $0x10
   jmp alltraps
-80105db1:	e9 b8 fa ff ff       	jmp    8010586e <alltraps>
+80105db1:	e9 c1 fa ff ff       	jmp    80105877 <alltraps>
 
 80105db6 <vector17>:
 .globl vector17
@@ -12010,7 +12016,7 @@ vector17:
   pushl $17
 80105db6:	6a 11                	push   $0x11
   jmp alltraps
-80105db8:	e9 b1 fa ff ff       	jmp    8010586e <alltraps>
+80105db8:	e9 ba fa ff ff       	jmp    80105877 <alltraps>
 
 80105dbd <vector18>:
 .globl vector18
@@ -12020,7 +12026,7 @@ vector18:
   pushl $18
 80105dbf:	6a 12                	push   $0x12
   jmp alltraps
-80105dc1:	e9 a8 fa ff ff       	jmp    8010586e <alltraps>
+80105dc1:	e9 b1 fa ff ff       	jmp    80105877 <alltraps>
 
 80105dc6 <vector19>:
 .globl vector19
@@ -12030,7 +12036,7 @@ vector19:
   pushl $19
 80105dc8:	6a 13                	push   $0x13
   jmp alltraps
-80105dca:	e9 9f fa ff ff       	jmp    8010586e <alltraps>
+80105dca:	e9 a8 fa ff ff       	jmp    80105877 <alltraps>
 
 80105dcf <vector20>:
 .globl vector20
@@ -12040,7 +12046,7 @@ vector20:
   pushl $20
 80105dd1:	6a 14                	push   $0x14
   jmp alltraps
-80105dd3:	e9 96 fa ff ff       	jmp    8010586e <alltraps>
+80105dd3:	e9 9f fa ff ff       	jmp    80105877 <alltraps>
 
 80105dd8 <vector21>:
 .globl vector21
@@ -12050,7 +12056,7 @@ vector21:
   pushl $21
 80105dda:	6a 15                	push   $0x15
   jmp alltraps
-80105ddc:	e9 8d fa ff ff       	jmp    8010586e <alltraps>
+80105ddc:	e9 96 fa ff ff       	jmp    80105877 <alltraps>
 
 80105de1 <vector22>:
 .globl vector22
@@ -12060,7 +12066,7 @@ vector22:
   pushl $22
 80105de3:	6a 16                	push   $0x16
   jmp alltraps
-80105de5:	e9 84 fa ff ff       	jmp    8010586e <alltraps>
+80105de5:	e9 8d fa ff ff       	jmp    80105877 <alltraps>
 
 80105dea <vector23>:
 .globl vector23
@@ -12070,7 +12076,7 @@ vector23:
   pushl $23
 80105dec:	6a 17                	push   $0x17
   jmp alltraps
-80105dee:	e9 7b fa ff ff       	jmp    8010586e <alltraps>
+80105dee:	e9 84 fa ff ff       	jmp    80105877 <alltraps>
 
 80105df3 <vector24>:
 .globl vector24
@@ -12080,7 +12086,7 @@ vector24:
   pushl $24
 80105df5:	6a 18                	push   $0x18
   jmp alltraps
-80105df7:	e9 72 fa ff ff       	jmp    8010586e <alltraps>
+80105df7:	e9 7b fa ff ff       	jmp    80105877 <alltraps>
 
 80105dfc <vector25>:
 .globl vector25
@@ -12090,7 +12096,7 @@ vector25:
   pushl $25
 80105dfe:	6a 19                	push   $0x19
   jmp alltraps
-80105e00:	e9 69 fa ff ff       	jmp    8010586e <alltraps>
+80105e00:	e9 72 fa ff ff       	jmp    80105877 <alltraps>
 
 80105e05 <vector26>:
 .globl vector26
@@ -12100,7 +12106,7 @@ vector26:
   pushl $26
 80105e07:	6a 1a                	push   $0x1a
   jmp alltraps
-80105e09:	e9 60 fa ff ff       	jmp    8010586e <alltraps>
+80105e09:	e9 69 fa ff ff       	jmp    80105877 <alltraps>
 
 80105e0e <vector27>:
 .globl vector27
@@ -12110,7 +12116,7 @@ vector27:
   pushl $27
 80105e10:	6a 1b                	push   $0x1b
   jmp alltraps
-80105e12:	e9 57 fa ff ff       	jmp    8010586e <alltraps>
+80105e12:	e9 60 fa ff ff       	jmp    80105877 <alltraps>
 
 80105e17 <vector28>:
 .globl vector28
@@ -12120,7 +12126,7 @@ vector28:
   pushl $28
 80105e19:	6a 1c                	push   $0x1c
   jmp alltraps
-80105e1b:	e9 4e fa ff ff       	jmp    8010586e <alltraps>
+80105e1b:	e9 57 fa ff ff       	jmp    80105877 <alltraps>
 
 80105e20 <vector29>:
 .globl vector29
@@ -12130,7 +12136,7 @@ vector29:
   pushl $29
 80105e22:	6a 1d                	push   $0x1d
   jmp alltraps
-80105e24:	e9 45 fa ff ff       	jmp    8010586e <alltraps>
+80105e24:	e9 4e fa ff ff       	jmp    80105877 <alltraps>
 
 80105e29 <vector30>:
 .globl vector30
@@ -12140,7 +12146,7 @@ vector30:
   pushl $30
 80105e2b:	6a 1e                	push   $0x1e
   jmp alltraps
-80105e2d:	e9 3c fa ff ff       	jmp    8010586e <alltraps>
+80105e2d:	e9 45 fa ff ff       	jmp    80105877 <alltraps>
 
 80105e32 <vector31>:
 .globl vector31
@@ -12150,7 +12156,7 @@ vector31:
   pushl $31
 80105e34:	6a 1f                	push   $0x1f
   jmp alltraps
-80105e36:	e9 33 fa ff ff       	jmp    8010586e <alltraps>
+80105e36:	e9 3c fa ff ff       	jmp    80105877 <alltraps>
 
 80105e3b <vector32>:
 .globl vector32
@@ -12160,7 +12166,7 @@ vector32:
   pushl $32
 80105e3d:	6a 20                	push   $0x20
   jmp alltraps
-80105e3f:	e9 2a fa ff ff       	jmp    8010586e <alltraps>
+80105e3f:	e9 33 fa ff ff       	jmp    80105877 <alltraps>
 
 80105e44 <vector33>:
 .globl vector33
@@ -12170,7 +12176,7 @@ vector33:
   pushl $33
 80105e46:	6a 21                	push   $0x21
   jmp alltraps
-80105e48:	e9 21 fa ff ff       	jmp    8010586e <alltraps>
+80105e48:	e9 2a fa ff ff       	jmp    80105877 <alltraps>
 
 80105e4d <vector34>:
 .globl vector34
@@ -12180,7 +12186,7 @@ vector34:
   pushl $34
 80105e4f:	6a 22                	push   $0x22
   jmp alltraps
-80105e51:	e9 18 fa ff ff       	jmp    8010586e <alltraps>
+80105e51:	e9 21 fa ff ff       	jmp    80105877 <alltraps>
 
 80105e56 <vector35>:
 .globl vector35
@@ -12190,7 +12196,7 @@ vector35:
   pushl $35
 80105e58:	6a 23                	push   $0x23
   jmp alltraps
-80105e5a:	e9 0f fa ff ff       	jmp    8010586e <alltraps>
+80105e5a:	e9 18 fa ff ff       	jmp    80105877 <alltraps>
 
 80105e5f <vector36>:
 .globl vector36
@@ -12200,7 +12206,7 @@ vector36:
   pushl $36
 80105e61:	6a 24                	push   $0x24
   jmp alltraps
-80105e63:	e9 06 fa ff ff       	jmp    8010586e <alltraps>
+80105e63:	e9 0f fa ff ff       	jmp    80105877 <alltraps>
 
 80105e68 <vector37>:
 .globl vector37
@@ -12210,7 +12216,7 @@ vector37:
   pushl $37
 80105e6a:	6a 25                	push   $0x25
   jmp alltraps
-80105e6c:	e9 fd f9 ff ff       	jmp    8010586e <alltraps>
+80105e6c:	e9 06 fa ff ff       	jmp    80105877 <alltraps>
 
 80105e71 <vector38>:
 .globl vector38
@@ -12220,7 +12226,7 @@ vector38:
   pushl $38
 80105e73:	6a 26                	push   $0x26
   jmp alltraps
-80105e75:	e9 f4 f9 ff ff       	jmp    8010586e <alltraps>
+80105e75:	e9 fd f9 ff ff       	jmp    80105877 <alltraps>
 
 80105e7a <vector39>:
 .globl vector39
@@ -12230,7 +12236,7 @@ vector39:
   pushl $39
 80105e7c:	6a 27                	push   $0x27
   jmp alltraps
-80105e7e:	e9 eb f9 ff ff       	jmp    8010586e <alltraps>
+80105e7e:	e9 f4 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105e83 <vector40>:
 .globl vector40
@@ -12240,7 +12246,7 @@ vector40:
   pushl $40
 80105e85:	6a 28                	push   $0x28
   jmp alltraps
-80105e87:	e9 e2 f9 ff ff       	jmp    8010586e <alltraps>
+80105e87:	e9 eb f9 ff ff       	jmp    80105877 <alltraps>
 
 80105e8c <vector41>:
 .globl vector41
@@ -12250,7 +12256,7 @@ vector41:
   pushl $41
 80105e8e:	6a 29                	push   $0x29
   jmp alltraps
-80105e90:	e9 d9 f9 ff ff       	jmp    8010586e <alltraps>
+80105e90:	e9 e2 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105e95 <vector42>:
 .globl vector42
@@ -12260,7 +12266,7 @@ vector42:
   pushl $42
 80105e97:	6a 2a                	push   $0x2a
   jmp alltraps
-80105e99:	e9 d0 f9 ff ff       	jmp    8010586e <alltraps>
+80105e99:	e9 d9 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105e9e <vector43>:
 .globl vector43
@@ -12270,7 +12276,7 @@ vector43:
   pushl $43
 80105ea0:	6a 2b                	push   $0x2b
   jmp alltraps
-80105ea2:	e9 c7 f9 ff ff       	jmp    8010586e <alltraps>
+80105ea2:	e9 d0 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105ea7 <vector44>:
 .globl vector44
@@ -12280,7 +12286,7 @@ vector44:
   pushl $44
 80105ea9:	6a 2c                	push   $0x2c
   jmp alltraps
-80105eab:	e9 be f9 ff ff       	jmp    8010586e <alltraps>
+80105eab:	e9 c7 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105eb0 <vector45>:
 .globl vector45
@@ -12290,7 +12296,7 @@ vector45:
   pushl $45
 80105eb2:	6a 2d                	push   $0x2d
   jmp alltraps
-80105eb4:	e9 b5 f9 ff ff       	jmp    8010586e <alltraps>
+80105eb4:	e9 be f9 ff ff       	jmp    80105877 <alltraps>
 
 80105eb9 <vector46>:
 .globl vector46
@@ -12300,7 +12306,7 @@ vector46:
   pushl $46
 80105ebb:	6a 2e                	push   $0x2e
   jmp alltraps
-80105ebd:	e9 ac f9 ff ff       	jmp    8010586e <alltraps>
+80105ebd:	e9 b5 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105ec2 <vector47>:
 .globl vector47
@@ -12310,7 +12316,7 @@ vector47:
   pushl $47
 80105ec4:	6a 2f                	push   $0x2f
   jmp alltraps
-80105ec6:	e9 a3 f9 ff ff       	jmp    8010586e <alltraps>
+80105ec6:	e9 ac f9 ff ff       	jmp    80105877 <alltraps>
 
 80105ecb <vector48>:
 .globl vector48
@@ -12320,7 +12326,7 @@ vector48:
   pushl $48
 80105ecd:	6a 30                	push   $0x30
   jmp alltraps
-80105ecf:	e9 9a f9 ff ff       	jmp    8010586e <alltraps>
+80105ecf:	e9 a3 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105ed4 <vector49>:
 .globl vector49
@@ -12330,7 +12336,7 @@ vector49:
   pushl $49
 80105ed6:	6a 31                	push   $0x31
   jmp alltraps
-80105ed8:	e9 91 f9 ff ff       	jmp    8010586e <alltraps>
+80105ed8:	e9 9a f9 ff ff       	jmp    80105877 <alltraps>
 
 80105edd <vector50>:
 .globl vector50
@@ -12340,7 +12346,7 @@ vector50:
   pushl $50
 80105edf:	6a 32                	push   $0x32
   jmp alltraps
-80105ee1:	e9 88 f9 ff ff       	jmp    8010586e <alltraps>
+80105ee1:	e9 91 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105ee6 <vector51>:
 .globl vector51
@@ -12350,7 +12356,7 @@ vector51:
   pushl $51
 80105ee8:	6a 33                	push   $0x33
   jmp alltraps
-80105eea:	e9 7f f9 ff ff       	jmp    8010586e <alltraps>
+80105eea:	e9 88 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105eef <vector52>:
 .globl vector52
@@ -12360,7 +12366,7 @@ vector52:
   pushl $52
 80105ef1:	6a 34                	push   $0x34
   jmp alltraps
-80105ef3:	e9 76 f9 ff ff       	jmp    8010586e <alltraps>
+80105ef3:	e9 7f f9 ff ff       	jmp    80105877 <alltraps>
 
 80105ef8 <vector53>:
 .globl vector53
@@ -12370,7 +12376,7 @@ vector53:
   pushl $53
 80105efa:	6a 35                	push   $0x35
   jmp alltraps
-80105efc:	e9 6d f9 ff ff       	jmp    8010586e <alltraps>
+80105efc:	e9 76 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f01 <vector54>:
 .globl vector54
@@ -12380,7 +12386,7 @@ vector54:
   pushl $54
 80105f03:	6a 36                	push   $0x36
   jmp alltraps
-80105f05:	e9 64 f9 ff ff       	jmp    8010586e <alltraps>
+80105f05:	e9 6d f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f0a <vector55>:
 .globl vector55
@@ -12390,7 +12396,7 @@ vector55:
   pushl $55
 80105f0c:	6a 37                	push   $0x37
   jmp alltraps
-80105f0e:	e9 5b f9 ff ff       	jmp    8010586e <alltraps>
+80105f0e:	e9 64 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f13 <vector56>:
 .globl vector56
@@ -12400,7 +12406,7 @@ vector56:
   pushl $56
 80105f15:	6a 38                	push   $0x38
   jmp alltraps
-80105f17:	e9 52 f9 ff ff       	jmp    8010586e <alltraps>
+80105f17:	e9 5b f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f1c <vector57>:
 .globl vector57
@@ -12410,7 +12416,7 @@ vector57:
   pushl $57
 80105f1e:	6a 39                	push   $0x39
   jmp alltraps
-80105f20:	e9 49 f9 ff ff       	jmp    8010586e <alltraps>
+80105f20:	e9 52 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f25 <vector58>:
 .globl vector58
@@ -12420,7 +12426,7 @@ vector58:
   pushl $58
 80105f27:	6a 3a                	push   $0x3a
   jmp alltraps
-80105f29:	e9 40 f9 ff ff       	jmp    8010586e <alltraps>
+80105f29:	e9 49 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f2e <vector59>:
 .globl vector59
@@ -12430,7 +12436,7 @@ vector59:
   pushl $59
 80105f30:	6a 3b                	push   $0x3b
   jmp alltraps
-80105f32:	e9 37 f9 ff ff       	jmp    8010586e <alltraps>
+80105f32:	e9 40 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f37 <vector60>:
 .globl vector60
@@ -12440,7 +12446,7 @@ vector60:
   pushl $60
 80105f39:	6a 3c                	push   $0x3c
   jmp alltraps
-80105f3b:	e9 2e f9 ff ff       	jmp    8010586e <alltraps>
+80105f3b:	e9 37 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f40 <vector61>:
 .globl vector61
@@ -12450,7 +12456,7 @@ vector61:
   pushl $61
 80105f42:	6a 3d                	push   $0x3d
   jmp alltraps
-80105f44:	e9 25 f9 ff ff       	jmp    8010586e <alltraps>
+80105f44:	e9 2e f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f49 <vector62>:
 .globl vector62
@@ -12460,7 +12466,7 @@ vector62:
   pushl $62
 80105f4b:	6a 3e                	push   $0x3e
   jmp alltraps
-80105f4d:	e9 1c f9 ff ff       	jmp    8010586e <alltraps>
+80105f4d:	e9 25 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f52 <vector63>:
 .globl vector63
@@ -12470,7 +12476,7 @@ vector63:
   pushl $63
 80105f54:	6a 3f                	push   $0x3f
   jmp alltraps
-80105f56:	e9 13 f9 ff ff       	jmp    8010586e <alltraps>
+80105f56:	e9 1c f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f5b <vector64>:
 .globl vector64
@@ -12480,7 +12486,7 @@ vector64:
   pushl $64
 80105f5d:	6a 40                	push   $0x40
   jmp alltraps
-80105f5f:	e9 0a f9 ff ff       	jmp    8010586e <alltraps>
+80105f5f:	e9 13 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f64 <vector65>:
 .globl vector65
@@ -12490,7 +12496,7 @@ vector65:
   pushl $65
 80105f66:	6a 41                	push   $0x41
   jmp alltraps
-80105f68:	e9 01 f9 ff ff       	jmp    8010586e <alltraps>
+80105f68:	e9 0a f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f6d <vector66>:
 .globl vector66
@@ -12500,7 +12506,7 @@ vector66:
   pushl $66
 80105f6f:	6a 42                	push   $0x42
   jmp alltraps
-80105f71:	e9 f8 f8 ff ff       	jmp    8010586e <alltraps>
+80105f71:	e9 01 f9 ff ff       	jmp    80105877 <alltraps>
 
 80105f76 <vector67>:
 .globl vector67
@@ -12510,7 +12516,7 @@ vector67:
   pushl $67
 80105f78:	6a 43                	push   $0x43
   jmp alltraps
-80105f7a:	e9 ef f8 ff ff       	jmp    8010586e <alltraps>
+80105f7a:	e9 f8 f8 ff ff       	jmp    80105877 <alltraps>
 
 80105f7f <vector68>:
 .globl vector68
@@ -12520,7 +12526,7 @@ vector68:
   pushl $68
 80105f81:	6a 44                	push   $0x44
   jmp alltraps
-80105f83:	e9 e6 f8 ff ff       	jmp    8010586e <alltraps>
+80105f83:	e9 ef f8 ff ff       	jmp    80105877 <alltraps>
 
 80105f88 <vector69>:
 .globl vector69
@@ -12530,7 +12536,7 @@ vector69:
   pushl $69
 80105f8a:	6a 45                	push   $0x45
   jmp alltraps
-80105f8c:	e9 dd f8 ff ff       	jmp    8010586e <alltraps>
+80105f8c:	e9 e6 f8 ff ff       	jmp    80105877 <alltraps>
 
 80105f91 <vector70>:
 .globl vector70
@@ -12540,7 +12546,7 @@ vector70:
   pushl $70
 80105f93:	6a 46                	push   $0x46
   jmp alltraps
-80105f95:	e9 d4 f8 ff ff       	jmp    8010586e <alltraps>
+80105f95:	e9 dd f8 ff ff       	jmp    80105877 <alltraps>
 
 80105f9a <vector71>:
 .globl vector71
@@ -12550,7 +12556,7 @@ vector71:
   pushl $71
 80105f9c:	6a 47                	push   $0x47
   jmp alltraps
-80105f9e:	e9 cb f8 ff ff       	jmp    8010586e <alltraps>
+80105f9e:	e9 d4 f8 ff ff       	jmp    80105877 <alltraps>
 
 80105fa3 <vector72>:
 .globl vector72
@@ -12560,7 +12566,7 @@ vector72:
   pushl $72
 80105fa5:	6a 48                	push   $0x48
   jmp alltraps
-80105fa7:	e9 c2 f8 ff ff       	jmp    8010586e <alltraps>
+80105fa7:	e9 cb f8 ff ff       	jmp    80105877 <alltraps>
 
 80105fac <vector73>:
 .globl vector73
@@ -12570,7 +12576,7 @@ vector73:
   pushl $73
 80105fae:	6a 49                	push   $0x49
   jmp alltraps
-80105fb0:	e9 b9 f8 ff ff       	jmp    8010586e <alltraps>
+80105fb0:	e9 c2 f8 ff ff       	jmp    80105877 <alltraps>
 
 80105fb5 <vector74>:
 .globl vector74
@@ -12580,7 +12586,7 @@ vector74:
   pushl $74
 80105fb7:	6a 4a                	push   $0x4a
   jmp alltraps
-80105fb9:	e9 b0 f8 ff ff       	jmp    8010586e <alltraps>
+80105fb9:	e9 b9 f8 ff ff       	jmp    80105877 <alltraps>
 
 80105fbe <vector75>:
 .globl vector75
@@ -12590,7 +12596,7 @@ vector75:
   pushl $75
 80105fc0:	6a 4b                	push   $0x4b
   jmp alltraps
-80105fc2:	e9 a7 f8 ff ff       	jmp    8010586e <alltraps>
+80105fc2:	e9 b0 f8 ff ff       	jmp    80105877 <alltraps>
 
 80105fc7 <vector76>:
 .globl vector76
@@ -12600,7 +12606,7 @@ vector76:
   pushl $76
 80105fc9:	6a 4c                	push   $0x4c
   jmp alltraps
-80105fcb:	e9 9e f8 ff ff       	jmp    8010586e <alltraps>
+80105fcb:	e9 a7 f8 ff ff       	jmp    80105877 <alltraps>
 
 80105fd0 <vector77>:
 .globl vector77
@@ -12610,7 +12616,7 @@ vector77:
   pushl $77
 80105fd2:	6a 4d                	push   $0x4d
   jmp alltraps
-80105fd4:	e9 95 f8 ff ff       	jmp    8010586e <alltraps>
+80105fd4:	e9 9e f8 ff ff       	jmp    80105877 <alltraps>
 
 80105fd9 <vector78>:
 .globl vector78
@@ -12620,7 +12626,7 @@ vector78:
   pushl $78
 80105fdb:	6a 4e                	push   $0x4e
   jmp alltraps
-80105fdd:	e9 8c f8 ff ff       	jmp    8010586e <alltraps>
+80105fdd:	e9 95 f8 ff ff       	jmp    80105877 <alltraps>
 
 80105fe2 <vector79>:
 .globl vector79
@@ -12630,7 +12636,7 @@ vector79:
   pushl $79
 80105fe4:	6a 4f                	push   $0x4f
   jmp alltraps
-80105fe6:	e9 83 f8 ff ff       	jmp    8010586e <alltraps>
+80105fe6:	e9 8c f8 ff ff       	jmp    80105877 <alltraps>
 
 80105feb <vector80>:
 .globl vector80
@@ -12640,7 +12646,7 @@ vector80:
   pushl $80
 80105fed:	6a 50                	push   $0x50
   jmp alltraps
-80105fef:	e9 7a f8 ff ff       	jmp    8010586e <alltraps>
+80105fef:	e9 83 f8 ff ff       	jmp    80105877 <alltraps>
 
 80105ff4 <vector81>:
 .globl vector81
@@ -12650,7 +12656,7 @@ vector81:
   pushl $81
 80105ff6:	6a 51                	push   $0x51
   jmp alltraps
-80105ff8:	e9 71 f8 ff ff       	jmp    8010586e <alltraps>
+80105ff8:	e9 7a f8 ff ff       	jmp    80105877 <alltraps>
 
 80105ffd <vector82>:
 .globl vector82
@@ -12660,7 +12666,7 @@ vector82:
   pushl $82
 80105fff:	6a 52                	push   $0x52
   jmp alltraps
-80106001:	e9 68 f8 ff ff       	jmp    8010586e <alltraps>
+80106001:	e9 71 f8 ff ff       	jmp    80105877 <alltraps>
 
 80106006 <vector83>:
 .globl vector83
@@ -12670,7 +12676,7 @@ vector83:
   pushl $83
 80106008:	6a 53                	push   $0x53
   jmp alltraps
-8010600a:	e9 5f f8 ff ff       	jmp    8010586e <alltraps>
+8010600a:	e9 68 f8 ff ff       	jmp    80105877 <alltraps>
 
 8010600f <vector84>:
 .globl vector84
@@ -12680,7 +12686,7 @@ vector84:
   pushl $84
 80106011:	6a 54                	push   $0x54
   jmp alltraps
-80106013:	e9 56 f8 ff ff       	jmp    8010586e <alltraps>
+80106013:	e9 5f f8 ff ff       	jmp    80105877 <alltraps>
 
 80106018 <vector85>:
 .globl vector85
@@ -12690,7 +12696,7 @@ vector85:
   pushl $85
 8010601a:	6a 55                	push   $0x55
   jmp alltraps
-8010601c:	e9 4d f8 ff ff       	jmp    8010586e <alltraps>
+8010601c:	e9 56 f8 ff ff       	jmp    80105877 <alltraps>
 
 80106021 <vector86>:
 .globl vector86
@@ -12700,7 +12706,7 @@ vector86:
   pushl $86
 80106023:	6a 56                	push   $0x56
   jmp alltraps
-80106025:	e9 44 f8 ff ff       	jmp    8010586e <alltraps>
+80106025:	e9 4d f8 ff ff       	jmp    80105877 <alltraps>
 
 8010602a <vector87>:
 .globl vector87
@@ -12710,7 +12716,7 @@ vector87:
   pushl $87
 8010602c:	6a 57                	push   $0x57
   jmp alltraps
-8010602e:	e9 3b f8 ff ff       	jmp    8010586e <alltraps>
+8010602e:	e9 44 f8 ff ff       	jmp    80105877 <alltraps>
 
 80106033 <vector88>:
 .globl vector88
@@ -12720,7 +12726,7 @@ vector88:
   pushl $88
 80106035:	6a 58                	push   $0x58
   jmp alltraps
-80106037:	e9 32 f8 ff ff       	jmp    8010586e <alltraps>
+80106037:	e9 3b f8 ff ff       	jmp    80105877 <alltraps>
 
 8010603c <vector89>:
 .globl vector89
@@ -12730,7 +12736,7 @@ vector89:
   pushl $89
 8010603e:	6a 59                	push   $0x59
   jmp alltraps
-80106040:	e9 29 f8 ff ff       	jmp    8010586e <alltraps>
+80106040:	e9 32 f8 ff ff       	jmp    80105877 <alltraps>
 
 80106045 <vector90>:
 .globl vector90
@@ -12740,7 +12746,7 @@ vector90:
   pushl $90
 80106047:	6a 5a                	push   $0x5a
   jmp alltraps
-80106049:	e9 20 f8 ff ff       	jmp    8010586e <alltraps>
+80106049:	e9 29 f8 ff ff       	jmp    80105877 <alltraps>
 
 8010604e <vector91>:
 .globl vector91
@@ -12750,7 +12756,7 @@ vector91:
   pushl $91
 80106050:	6a 5b                	push   $0x5b
   jmp alltraps
-80106052:	e9 17 f8 ff ff       	jmp    8010586e <alltraps>
+80106052:	e9 20 f8 ff ff       	jmp    80105877 <alltraps>
 
 80106057 <vector92>:
 .globl vector92
@@ -12760,7 +12766,7 @@ vector92:
   pushl $92
 80106059:	6a 5c                	push   $0x5c
   jmp alltraps
-8010605b:	e9 0e f8 ff ff       	jmp    8010586e <alltraps>
+8010605b:	e9 17 f8 ff ff       	jmp    80105877 <alltraps>
 
 80106060 <vector93>:
 .globl vector93
@@ -12770,7 +12776,7 @@ vector93:
   pushl $93
 80106062:	6a 5d                	push   $0x5d
   jmp alltraps
-80106064:	e9 05 f8 ff ff       	jmp    8010586e <alltraps>
+80106064:	e9 0e f8 ff ff       	jmp    80105877 <alltraps>
 
 80106069 <vector94>:
 .globl vector94
@@ -12780,7 +12786,7 @@ vector94:
   pushl $94
 8010606b:	6a 5e                	push   $0x5e
   jmp alltraps
-8010606d:	e9 fc f7 ff ff       	jmp    8010586e <alltraps>
+8010606d:	e9 05 f8 ff ff       	jmp    80105877 <alltraps>
 
 80106072 <vector95>:
 .globl vector95
@@ -12790,7 +12796,7 @@ vector95:
   pushl $95
 80106074:	6a 5f                	push   $0x5f
   jmp alltraps
-80106076:	e9 f3 f7 ff ff       	jmp    8010586e <alltraps>
+80106076:	e9 fc f7 ff ff       	jmp    80105877 <alltraps>
 
 8010607b <vector96>:
 .globl vector96
@@ -12800,7 +12806,7 @@ vector96:
   pushl $96
 8010607d:	6a 60                	push   $0x60
   jmp alltraps
-8010607f:	e9 ea f7 ff ff       	jmp    8010586e <alltraps>
+8010607f:	e9 f3 f7 ff ff       	jmp    80105877 <alltraps>
 
 80106084 <vector97>:
 .globl vector97
@@ -12810,7 +12816,7 @@ vector97:
   pushl $97
 80106086:	6a 61                	push   $0x61
   jmp alltraps
-80106088:	e9 e1 f7 ff ff       	jmp    8010586e <alltraps>
+80106088:	e9 ea f7 ff ff       	jmp    80105877 <alltraps>
 
 8010608d <vector98>:
 .globl vector98
@@ -12820,7 +12826,7 @@ vector98:
   pushl $98
 8010608f:	6a 62                	push   $0x62
   jmp alltraps
-80106091:	e9 d8 f7 ff ff       	jmp    8010586e <alltraps>
+80106091:	e9 e1 f7 ff ff       	jmp    80105877 <alltraps>
 
 80106096 <vector99>:
 .globl vector99
@@ -12830,7 +12836,7 @@ vector99:
   pushl $99
 80106098:	6a 63                	push   $0x63
   jmp alltraps
-8010609a:	e9 cf f7 ff ff       	jmp    8010586e <alltraps>
+8010609a:	e9 d8 f7 ff ff       	jmp    80105877 <alltraps>
 
 8010609f <vector100>:
 .globl vector100
@@ -12840,7 +12846,7 @@ vector100:
   pushl $100
 801060a1:	6a 64                	push   $0x64
   jmp alltraps
-801060a3:	e9 c6 f7 ff ff       	jmp    8010586e <alltraps>
+801060a3:	e9 cf f7 ff ff       	jmp    80105877 <alltraps>
 
 801060a8 <vector101>:
 .globl vector101
@@ -12850,7 +12856,7 @@ vector101:
   pushl $101
 801060aa:	6a 65                	push   $0x65
   jmp alltraps
-801060ac:	e9 bd f7 ff ff       	jmp    8010586e <alltraps>
+801060ac:	e9 c6 f7 ff ff       	jmp    80105877 <alltraps>
 
 801060b1 <vector102>:
 .globl vector102
@@ -12860,7 +12866,7 @@ vector102:
   pushl $102
 801060b3:	6a 66                	push   $0x66
   jmp alltraps
-801060b5:	e9 b4 f7 ff ff       	jmp    8010586e <alltraps>
+801060b5:	e9 bd f7 ff ff       	jmp    80105877 <alltraps>
 
 801060ba <vector103>:
 .globl vector103
@@ -12870,7 +12876,7 @@ vector103:
   pushl $103
 801060bc:	6a 67                	push   $0x67
   jmp alltraps
-801060be:	e9 ab f7 ff ff       	jmp    8010586e <alltraps>
+801060be:	e9 b4 f7 ff ff       	jmp    80105877 <alltraps>
 
 801060c3 <vector104>:
 .globl vector104
@@ -12880,7 +12886,7 @@ vector104:
   pushl $104
 801060c5:	6a 68                	push   $0x68
   jmp alltraps
-801060c7:	e9 a2 f7 ff ff       	jmp    8010586e <alltraps>
+801060c7:	e9 ab f7 ff ff       	jmp    80105877 <alltraps>
 
 801060cc <vector105>:
 .globl vector105
@@ -12890,7 +12896,7 @@ vector105:
   pushl $105
 801060ce:	6a 69                	push   $0x69
   jmp alltraps
-801060d0:	e9 99 f7 ff ff       	jmp    8010586e <alltraps>
+801060d0:	e9 a2 f7 ff ff       	jmp    80105877 <alltraps>
 
 801060d5 <vector106>:
 .globl vector106
@@ -12900,7 +12906,7 @@ vector106:
   pushl $106
 801060d7:	6a 6a                	push   $0x6a
   jmp alltraps
-801060d9:	e9 90 f7 ff ff       	jmp    8010586e <alltraps>
+801060d9:	e9 99 f7 ff ff       	jmp    80105877 <alltraps>
 
 801060de <vector107>:
 .globl vector107
@@ -12910,7 +12916,7 @@ vector107:
   pushl $107
 801060e0:	6a 6b                	push   $0x6b
   jmp alltraps
-801060e2:	e9 87 f7 ff ff       	jmp    8010586e <alltraps>
+801060e2:	e9 90 f7 ff ff       	jmp    80105877 <alltraps>
 
 801060e7 <vector108>:
 .globl vector108
@@ -12920,7 +12926,7 @@ vector108:
   pushl $108
 801060e9:	6a 6c                	push   $0x6c
   jmp alltraps
-801060eb:	e9 7e f7 ff ff       	jmp    8010586e <alltraps>
+801060eb:	e9 87 f7 ff ff       	jmp    80105877 <alltraps>
 
 801060f0 <vector109>:
 .globl vector109
@@ -12930,7 +12936,7 @@ vector109:
   pushl $109
 801060f2:	6a 6d                	push   $0x6d
   jmp alltraps
-801060f4:	e9 75 f7 ff ff       	jmp    8010586e <alltraps>
+801060f4:	e9 7e f7 ff ff       	jmp    80105877 <alltraps>
 
 801060f9 <vector110>:
 .globl vector110
@@ -12940,7 +12946,7 @@ vector110:
   pushl $110
 801060fb:	6a 6e                	push   $0x6e
   jmp alltraps
-801060fd:	e9 6c f7 ff ff       	jmp    8010586e <alltraps>
+801060fd:	e9 75 f7 ff ff       	jmp    80105877 <alltraps>
 
 80106102 <vector111>:
 .globl vector111
@@ -12950,7 +12956,7 @@ vector111:
   pushl $111
 80106104:	6a 6f                	push   $0x6f
   jmp alltraps
-80106106:	e9 63 f7 ff ff       	jmp    8010586e <alltraps>
+80106106:	e9 6c f7 ff ff       	jmp    80105877 <alltraps>
 
 8010610b <vector112>:
 .globl vector112
@@ -12960,7 +12966,7 @@ vector112:
   pushl $112
 8010610d:	6a 70                	push   $0x70
   jmp alltraps
-8010610f:	e9 5a f7 ff ff       	jmp    8010586e <alltraps>
+8010610f:	e9 63 f7 ff ff       	jmp    80105877 <alltraps>
 
 80106114 <vector113>:
 .globl vector113
@@ -12970,7 +12976,7 @@ vector113:
   pushl $113
 80106116:	6a 71                	push   $0x71
   jmp alltraps
-80106118:	e9 51 f7 ff ff       	jmp    8010586e <alltraps>
+80106118:	e9 5a f7 ff ff       	jmp    80105877 <alltraps>
 
 8010611d <vector114>:
 .globl vector114
@@ -12980,7 +12986,7 @@ vector114:
   pushl $114
 8010611f:	6a 72                	push   $0x72
   jmp alltraps
-80106121:	e9 48 f7 ff ff       	jmp    8010586e <alltraps>
+80106121:	e9 51 f7 ff ff       	jmp    80105877 <alltraps>
 
 80106126 <vector115>:
 .globl vector115
@@ -12990,7 +12996,7 @@ vector115:
   pushl $115
 80106128:	6a 73                	push   $0x73
   jmp alltraps
-8010612a:	e9 3f f7 ff ff       	jmp    8010586e <alltraps>
+8010612a:	e9 48 f7 ff ff       	jmp    80105877 <alltraps>
 
 8010612f <vector116>:
 .globl vector116
@@ -13000,7 +13006,7 @@ vector116:
   pushl $116
 80106131:	6a 74                	push   $0x74
   jmp alltraps
-80106133:	e9 36 f7 ff ff       	jmp    8010586e <alltraps>
+80106133:	e9 3f f7 ff ff       	jmp    80105877 <alltraps>
 
 80106138 <vector117>:
 .globl vector117
@@ -13010,7 +13016,7 @@ vector117:
   pushl $117
 8010613a:	6a 75                	push   $0x75
   jmp alltraps
-8010613c:	e9 2d f7 ff ff       	jmp    8010586e <alltraps>
+8010613c:	e9 36 f7 ff ff       	jmp    80105877 <alltraps>
 
 80106141 <vector118>:
 .globl vector118
@@ -13020,7 +13026,7 @@ vector118:
   pushl $118
 80106143:	6a 76                	push   $0x76
   jmp alltraps
-80106145:	e9 24 f7 ff ff       	jmp    8010586e <alltraps>
+80106145:	e9 2d f7 ff ff       	jmp    80105877 <alltraps>
 
 8010614a <vector119>:
 .globl vector119
@@ -13030,7 +13036,7 @@ vector119:
   pushl $119
 8010614c:	6a 77                	push   $0x77
   jmp alltraps
-8010614e:	e9 1b f7 ff ff       	jmp    8010586e <alltraps>
+8010614e:	e9 24 f7 ff ff       	jmp    80105877 <alltraps>
 
 80106153 <vector120>:
 .globl vector120
@@ -13040,7 +13046,7 @@ vector120:
   pushl $120
 80106155:	6a 78                	push   $0x78
   jmp alltraps
-80106157:	e9 12 f7 ff ff       	jmp    8010586e <alltraps>
+80106157:	e9 1b f7 ff ff       	jmp    80105877 <alltraps>
 
 8010615c <vector121>:
 .globl vector121
@@ -13050,7 +13056,7 @@ vector121:
   pushl $121
 8010615e:	6a 79                	push   $0x79
   jmp alltraps
-80106160:	e9 09 f7 ff ff       	jmp    8010586e <alltraps>
+80106160:	e9 12 f7 ff ff       	jmp    80105877 <alltraps>
 
 80106165 <vector122>:
 .globl vector122
@@ -13060,7 +13066,7 @@ vector122:
   pushl $122
 80106167:	6a 7a                	push   $0x7a
   jmp alltraps
-80106169:	e9 00 f7 ff ff       	jmp    8010586e <alltraps>
+80106169:	e9 09 f7 ff ff       	jmp    80105877 <alltraps>
 
 8010616e <vector123>:
 .globl vector123
@@ -13070,7 +13076,7 @@ vector123:
   pushl $123
 80106170:	6a 7b                	push   $0x7b
   jmp alltraps
-80106172:	e9 f7 f6 ff ff       	jmp    8010586e <alltraps>
+80106172:	e9 00 f7 ff ff       	jmp    80105877 <alltraps>
 
 80106177 <vector124>:
 .globl vector124
@@ -13080,7 +13086,7 @@ vector124:
   pushl $124
 80106179:	6a 7c                	push   $0x7c
   jmp alltraps
-8010617b:	e9 ee f6 ff ff       	jmp    8010586e <alltraps>
+8010617b:	e9 f7 f6 ff ff       	jmp    80105877 <alltraps>
 
 80106180 <vector125>:
 .globl vector125
@@ -13090,7 +13096,7 @@ vector125:
   pushl $125
 80106182:	6a 7d                	push   $0x7d
   jmp alltraps
-80106184:	e9 e5 f6 ff ff       	jmp    8010586e <alltraps>
+80106184:	e9 ee f6 ff ff       	jmp    80105877 <alltraps>
 
 80106189 <vector126>:
 .globl vector126
@@ -13100,7 +13106,7 @@ vector126:
   pushl $126
 8010618b:	6a 7e                	push   $0x7e
   jmp alltraps
-8010618d:	e9 dc f6 ff ff       	jmp    8010586e <alltraps>
+8010618d:	e9 e5 f6 ff ff       	jmp    80105877 <alltraps>
 
 80106192 <vector127>:
 .globl vector127
@@ -13110,7 +13116,7 @@ vector127:
   pushl $127
 80106194:	6a 7f                	push   $0x7f
   jmp alltraps
-80106196:	e9 d3 f6 ff ff       	jmp    8010586e <alltraps>
+80106196:	e9 dc f6 ff ff       	jmp    80105877 <alltraps>
 
 8010619b <vector128>:
 .globl vector128
@@ -13120,7 +13126,7 @@ vector128:
   pushl $128
 8010619d:	68 80 00 00 00       	push   $0x80
   jmp alltraps
-801061a2:	e9 c7 f6 ff ff       	jmp    8010586e <alltraps>
+801061a2:	e9 d0 f6 ff ff       	jmp    80105877 <alltraps>
 
 801061a7 <vector129>:
 .globl vector129
@@ -13130,7 +13136,7 @@ vector129:
   pushl $129
 801061a9:	68 81 00 00 00       	push   $0x81
   jmp alltraps
-801061ae:	e9 bb f6 ff ff       	jmp    8010586e <alltraps>
+801061ae:	e9 c4 f6 ff ff       	jmp    80105877 <alltraps>
 
 801061b3 <vector130>:
 .globl vector130
@@ -13140,7 +13146,7 @@ vector130:
   pushl $130
 801061b5:	68 82 00 00 00       	push   $0x82
   jmp alltraps
-801061ba:	e9 af f6 ff ff       	jmp    8010586e <alltraps>
+801061ba:	e9 b8 f6 ff ff       	jmp    80105877 <alltraps>
 
 801061bf <vector131>:
 .globl vector131
@@ -13150,7 +13156,7 @@ vector131:
   pushl $131
 801061c1:	68 83 00 00 00       	push   $0x83
   jmp alltraps
-801061c6:	e9 a3 f6 ff ff       	jmp    8010586e <alltraps>
+801061c6:	e9 ac f6 ff ff       	jmp    80105877 <alltraps>
 
 801061cb <vector132>:
 .globl vector132
@@ -13160,7 +13166,7 @@ vector132:
   pushl $132
 801061cd:	68 84 00 00 00       	push   $0x84
   jmp alltraps
-801061d2:	e9 97 f6 ff ff       	jmp    8010586e <alltraps>
+801061d2:	e9 a0 f6 ff ff       	jmp    80105877 <alltraps>
 
 801061d7 <vector133>:
 .globl vector133
@@ -13170,7 +13176,7 @@ vector133:
   pushl $133
 801061d9:	68 85 00 00 00       	push   $0x85
   jmp alltraps
-801061de:	e9 8b f6 ff ff       	jmp    8010586e <alltraps>
+801061de:	e9 94 f6 ff ff       	jmp    80105877 <alltraps>
 
 801061e3 <vector134>:
 .globl vector134
@@ -13180,7 +13186,7 @@ vector134:
   pushl $134
 801061e5:	68 86 00 00 00       	push   $0x86
   jmp alltraps
-801061ea:	e9 7f f6 ff ff       	jmp    8010586e <alltraps>
+801061ea:	e9 88 f6 ff ff       	jmp    80105877 <alltraps>
 
 801061ef <vector135>:
 .globl vector135
@@ -13190,7 +13196,7 @@ vector135:
   pushl $135
 801061f1:	68 87 00 00 00       	push   $0x87
   jmp alltraps
-801061f6:	e9 73 f6 ff ff       	jmp    8010586e <alltraps>
+801061f6:	e9 7c f6 ff ff       	jmp    80105877 <alltraps>
 
 801061fb <vector136>:
 .globl vector136
@@ -13200,7 +13206,7 @@ vector136:
   pushl $136
 801061fd:	68 88 00 00 00       	push   $0x88
   jmp alltraps
-80106202:	e9 67 f6 ff ff       	jmp    8010586e <alltraps>
+80106202:	e9 70 f6 ff ff       	jmp    80105877 <alltraps>
 
 80106207 <vector137>:
 .globl vector137
@@ -13210,7 +13216,7 @@ vector137:
   pushl $137
 80106209:	68 89 00 00 00       	push   $0x89
   jmp alltraps
-8010620e:	e9 5b f6 ff ff       	jmp    8010586e <alltraps>
+8010620e:	e9 64 f6 ff ff       	jmp    80105877 <alltraps>
 
 80106213 <vector138>:
 .globl vector138
@@ -13220,7 +13226,7 @@ vector138:
   pushl $138
 80106215:	68 8a 00 00 00       	push   $0x8a
   jmp alltraps
-8010621a:	e9 4f f6 ff ff       	jmp    8010586e <alltraps>
+8010621a:	e9 58 f6 ff ff       	jmp    80105877 <alltraps>
 
 8010621f <vector139>:
 .globl vector139
@@ -13230,7 +13236,7 @@ vector139:
   pushl $139
 80106221:	68 8b 00 00 00       	push   $0x8b
   jmp alltraps
-80106226:	e9 43 f6 ff ff       	jmp    8010586e <alltraps>
+80106226:	e9 4c f6 ff ff       	jmp    80105877 <alltraps>
 
 8010622b <vector140>:
 .globl vector140
@@ -13240,7 +13246,7 @@ vector140:
   pushl $140
 8010622d:	68 8c 00 00 00       	push   $0x8c
   jmp alltraps
-80106232:	e9 37 f6 ff ff       	jmp    8010586e <alltraps>
+80106232:	e9 40 f6 ff ff       	jmp    80105877 <alltraps>
 
 80106237 <vector141>:
 .globl vector141
@@ -13250,7 +13256,7 @@ vector141:
   pushl $141
 80106239:	68 8d 00 00 00       	push   $0x8d
   jmp alltraps
-8010623e:	e9 2b f6 ff ff       	jmp    8010586e <alltraps>
+8010623e:	e9 34 f6 ff ff       	jmp    80105877 <alltraps>
 
 80106243 <vector142>:
 .globl vector142
@@ -13260,7 +13266,7 @@ vector142:
   pushl $142
 80106245:	68 8e 00 00 00       	push   $0x8e
   jmp alltraps
-8010624a:	e9 1f f6 ff ff       	jmp    8010586e <alltraps>
+8010624a:	e9 28 f6 ff ff       	jmp    80105877 <alltraps>
 
 8010624f <vector143>:
 .globl vector143
@@ -13270,7 +13276,7 @@ vector143:
   pushl $143
 80106251:	68 8f 00 00 00       	push   $0x8f
   jmp alltraps
-80106256:	e9 13 f6 ff ff       	jmp    8010586e <alltraps>
+80106256:	e9 1c f6 ff ff       	jmp    80105877 <alltraps>
 
 8010625b <vector144>:
 .globl vector144
@@ -13280,7 +13286,7 @@ vector144:
   pushl $144
 8010625d:	68 90 00 00 00       	push   $0x90
   jmp alltraps
-80106262:	e9 07 f6 ff ff       	jmp    8010586e <alltraps>
+80106262:	e9 10 f6 ff ff       	jmp    80105877 <alltraps>
 
 80106267 <vector145>:
 .globl vector145
@@ -13290,7 +13296,7 @@ vector145:
   pushl $145
 80106269:	68 91 00 00 00       	push   $0x91
   jmp alltraps
-8010626e:	e9 fb f5 ff ff       	jmp    8010586e <alltraps>
+8010626e:	e9 04 f6 ff ff       	jmp    80105877 <alltraps>
 
 80106273 <vector146>:
 .globl vector146
@@ -13300,7 +13306,7 @@ vector146:
   pushl $146
 80106275:	68 92 00 00 00       	push   $0x92
   jmp alltraps
-8010627a:	e9 ef f5 ff ff       	jmp    8010586e <alltraps>
+8010627a:	e9 f8 f5 ff ff       	jmp    80105877 <alltraps>
 
 8010627f <vector147>:
 .globl vector147
@@ -13310,7 +13316,7 @@ vector147:
   pushl $147
 80106281:	68 93 00 00 00       	push   $0x93
   jmp alltraps
-80106286:	e9 e3 f5 ff ff       	jmp    8010586e <alltraps>
+80106286:	e9 ec f5 ff ff       	jmp    80105877 <alltraps>
 
 8010628b <vector148>:
 .globl vector148
@@ -13320,7 +13326,7 @@ vector148:
   pushl $148
 8010628d:	68 94 00 00 00       	push   $0x94
   jmp alltraps
-80106292:	e9 d7 f5 ff ff       	jmp    8010586e <alltraps>
+80106292:	e9 e0 f5 ff ff       	jmp    80105877 <alltraps>
 
 80106297 <vector149>:
 .globl vector149
@@ -13330,7 +13336,7 @@ vector149:
   pushl $149
 80106299:	68 95 00 00 00       	push   $0x95
   jmp alltraps
-8010629e:	e9 cb f5 ff ff       	jmp    8010586e <alltraps>
+8010629e:	e9 d4 f5 ff ff       	jmp    80105877 <alltraps>
 
 801062a3 <vector150>:
 .globl vector150
@@ -13340,7 +13346,7 @@ vector150:
   pushl $150
 801062a5:	68 96 00 00 00       	push   $0x96
   jmp alltraps
-801062aa:	e9 bf f5 ff ff       	jmp    8010586e <alltraps>
+801062aa:	e9 c8 f5 ff ff       	jmp    80105877 <alltraps>
 
 801062af <vector151>:
 .globl vector151
@@ -13350,7 +13356,7 @@ vector151:
   pushl $151
 801062b1:	68 97 00 00 00       	push   $0x97
   jmp alltraps
-801062b6:	e9 b3 f5 ff ff       	jmp    8010586e <alltraps>
+801062b6:	e9 bc f5 ff ff       	jmp    80105877 <alltraps>
 
 801062bb <vector152>:
 .globl vector152
@@ -13360,7 +13366,7 @@ vector152:
   pushl $152
 801062bd:	68 98 00 00 00       	push   $0x98
   jmp alltraps
-801062c2:	e9 a7 f5 ff ff       	jmp    8010586e <alltraps>
+801062c2:	e9 b0 f5 ff ff       	jmp    80105877 <alltraps>
 
 801062c7 <vector153>:
 .globl vector153
@@ -13370,7 +13376,7 @@ vector153:
   pushl $153
 801062c9:	68 99 00 00 00       	push   $0x99
   jmp alltraps
-801062ce:	e9 9b f5 ff ff       	jmp    8010586e <alltraps>
+801062ce:	e9 a4 f5 ff ff       	jmp    80105877 <alltraps>
 
 801062d3 <vector154>:
 .globl vector154
@@ -13380,7 +13386,7 @@ vector154:
   pushl $154
 801062d5:	68 9a 00 00 00       	push   $0x9a
   jmp alltraps
-801062da:	e9 8f f5 ff ff       	jmp    8010586e <alltraps>
+801062da:	e9 98 f5 ff ff       	jmp    80105877 <alltraps>
 
 801062df <vector155>:
 .globl vector155
@@ -13390,7 +13396,7 @@ vector155:
   pushl $155
 801062e1:	68 9b 00 00 00       	push   $0x9b
   jmp alltraps
-801062e6:	e9 83 f5 ff ff       	jmp    8010586e <alltraps>
+801062e6:	e9 8c f5 ff ff       	jmp    80105877 <alltraps>
 
 801062eb <vector156>:
 .globl vector156
@@ -13400,7 +13406,7 @@ vector156:
   pushl $156
 801062ed:	68 9c 00 00 00       	push   $0x9c
   jmp alltraps
-801062f2:	e9 77 f5 ff ff       	jmp    8010586e <alltraps>
+801062f2:	e9 80 f5 ff ff       	jmp    80105877 <alltraps>
 
 801062f7 <vector157>:
 .globl vector157
@@ -13410,7 +13416,7 @@ vector157:
   pushl $157
 801062f9:	68 9d 00 00 00       	push   $0x9d
   jmp alltraps
-801062fe:	e9 6b f5 ff ff       	jmp    8010586e <alltraps>
+801062fe:	e9 74 f5 ff ff       	jmp    80105877 <alltraps>
 
 80106303 <vector158>:
 .globl vector158
@@ -13420,7 +13426,7 @@ vector158:
   pushl $158
 80106305:	68 9e 00 00 00       	push   $0x9e
   jmp alltraps
-8010630a:	e9 5f f5 ff ff       	jmp    8010586e <alltraps>
+8010630a:	e9 68 f5 ff ff       	jmp    80105877 <alltraps>
 
 8010630f <vector159>:
 .globl vector159
@@ -13430,7 +13436,7 @@ vector159:
   pushl $159
 80106311:	68 9f 00 00 00       	push   $0x9f
   jmp alltraps
-80106316:	e9 53 f5 ff ff       	jmp    8010586e <alltraps>
+80106316:	e9 5c f5 ff ff       	jmp    80105877 <alltraps>
 
 8010631b <vector160>:
 .globl vector160
@@ -13440,7 +13446,7 @@ vector160:
   pushl $160
 8010631d:	68 a0 00 00 00       	push   $0xa0
   jmp alltraps
-80106322:	e9 47 f5 ff ff       	jmp    8010586e <alltraps>
+80106322:	e9 50 f5 ff ff       	jmp    80105877 <alltraps>
 
 80106327 <vector161>:
 .globl vector161
@@ -13450,7 +13456,7 @@ vector161:
   pushl $161
 80106329:	68 a1 00 00 00       	push   $0xa1
   jmp alltraps
-8010632e:	e9 3b f5 ff ff       	jmp    8010586e <alltraps>
+8010632e:	e9 44 f5 ff ff       	jmp    80105877 <alltraps>
 
 80106333 <vector162>:
 .globl vector162
@@ -13460,7 +13466,7 @@ vector162:
   pushl $162
 80106335:	68 a2 00 00 00       	push   $0xa2
   jmp alltraps
-8010633a:	e9 2f f5 ff ff       	jmp    8010586e <alltraps>
+8010633a:	e9 38 f5 ff ff       	jmp    80105877 <alltraps>
 
 8010633f <vector163>:
 .globl vector163
@@ -13470,7 +13476,7 @@ vector163:
   pushl $163
 80106341:	68 a3 00 00 00       	push   $0xa3
   jmp alltraps
-80106346:	e9 23 f5 ff ff       	jmp    8010586e <alltraps>
+80106346:	e9 2c f5 ff ff       	jmp    80105877 <alltraps>
 
 8010634b <vector164>:
 .globl vector164
@@ -13480,7 +13486,7 @@ vector164:
   pushl $164
 8010634d:	68 a4 00 00 00       	push   $0xa4
   jmp alltraps
-80106352:	e9 17 f5 ff ff       	jmp    8010586e <alltraps>
+80106352:	e9 20 f5 ff ff       	jmp    80105877 <alltraps>
 
 80106357 <vector165>:
 .globl vector165
@@ -13490,7 +13496,7 @@ vector165:
   pushl $165
 80106359:	68 a5 00 00 00       	push   $0xa5
   jmp alltraps
-8010635e:	e9 0b f5 ff ff       	jmp    8010586e <alltraps>
+8010635e:	e9 14 f5 ff ff       	jmp    80105877 <alltraps>
 
 80106363 <vector166>:
 .globl vector166
@@ -13500,7 +13506,7 @@ vector166:
   pushl $166
 80106365:	68 a6 00 00 00       	push   $0xa6
   jmp alltraps
-8010636a:	e9 ff f4 ff ff       	jmp    8010586e <alltraps>
+8010636a:	e9 08 f5 ff ff       	jmp    80105877 <alltraps>
 
 8010636f <vector167>:
 .globl vector167
@@ -13510,7 +13516,7 @@ vector167:
   pushl $167
 80106371:	68 a7 00 00 00       	push   $0xa7
   jmp alltraps
-80106376:	e9 f3 f4 ff ff       	jmp    8010586e <alltraps>
+80106376:	e9 fc f4 ff ff       	jmp    80105877 <alltraps>
 
 8010637b <vector168>:
 .globl vector168
@@ -13520,7 +13526,7 @@ vector168:
   pushl $168
 8010637d:	68 a8 00 00 00       	push   $0xa8
   jmp alltraps
-80106382:	e9 e7 f4 ff ff       	jmp    8010586e <alltraps>
+80106382:	e9 f0 f4 ff ff       	jmp    80105877 <alltraps>
 
 80106387 <vector169>:
 .globl vector169
@@ -13530,7 +13536,7 @@ vector169:
   pushl $169
 80106389:	68 a9 00 00 00       	push   $0xa9
   jmp alltraps
-8010638e:	e9 db f4 ff ff       	jmp    8010586e <alltraps>
+8010638e:	e9 e4 f4 ff ff       	jmp    80105877 <alltraps>
 
 80106393 <vector170>:
 .globl vector170
@@ -13540,7 +13546,7 @@ vector170:
   pushl $170
 80106395:	68 aa 00 00 00       	push   $0xaa
   jmp alltraps
-8010639a:	e9 cf f4 ff ff       	jmp    8010586e <alltraps>
+8010639a:	e9 d8 f4 ff ff       	jmp    80105877 <alltraps>
 
 8010639f <vector171>:
 .globl vector171
@@ -13550,7 +13556,7 @@ vector171:
   pushl $171
 801063a1:	68 ab 00 00 00       	push   $0xab
   jmp alltraps
-801063a6:	e9 c3 f4 ff ff       	jmp    8010586e <alltraps>
+801063a6:	e9 cc f4 ff ff       	jmp    80105877 <alltraps>
 
 801063ab <vector172>:
 .globl vector172
@@ -13560,7 +13566,7 @@ vector172:
   pushl $172
 801063ad:	68 ac 00 00 00       	push   $0xac
   jmp alltraps
-801063b2:	e9 b7 f4 ff ff       	jmp    8010586e <alltraps>
+801063b2:	e9 c0 f4 ff ff       	jmp    80105877 <alltraps>
 
 801063b7 <vector173>:
 .globl vector173
@@ -13570,7 +13576,7 @@ vector173:
   pushl $173
 801063b9:	68 ad 00 00 00       	push   $0xad
   jmp alltraps
-801063be:	e9 ab f4 ff ff       	jmp    8010586e <alltraps>
+801063be:	e9 b4 f4 ff ff       	jmp    80105877 <alltraps>
 
 801063c3 <vector174>:
 .globl vector174
@@ -13580,7 +13586,7 @@ vector174:
   pushl $174
 801063c5:	68 ae 00 00 00       	push   $0xae
   jmp alltraps
-801063ca:	e9 9f f4 ff ff       	jmp    8010586e <alltraps>
+801063ca:	e9 a8 f4 ff ff       	jmp    80105877 <alltraps>
 
 801063cf <vector175>:
 .globl vector175
@@ -13590,7 +13596,7 @@ vector175:
   pushl $175
 801063d1:	68 af 00 00 00       	push   $0xaf
   jmp alltraps
-801063d6:	e9 93 f4 ff ff       	jmp    8010586e <alltraps>
+801063d6:	e9 9c f4 ff ff       	jmp    80105877 <alltraps>
 
 801063db <vector176>:
 .globl vector176
@@ -13600,7 +13606,7 @@ vector176:
   pushl $176
 801063dd:	68 b0 00 00 00       	push   $0xb0
   jmp alltraps
-801063e2:	e9 87 f4 ff ff       	jmp    8010586e <alltraps>
+801063e2:	e9 90 f4 ff ff       	jmp    80105877 <alltraps>
 
 801063e7 <vector177>:
 .globl vector177
@@ -13610,7 +13616,7 @@ vector177:
   pushl $177
 801063e9:	68 b1 00 00 00       	push   $0xb1
   jmp alltraps
-801063ee:	e9 7b f4 ff ff       	jmp    8010586e <alltraps>
+801063ee:	e9 84 f4 ff ff       	jmp    80105877 <alltraps>
 
 801063f3 <vector178>:
 .globl vector178
@@ -13620,7 +13626,7 @@ vector178:
   pushl $178
 801063f5:	68 b2 00 00 00       	push   $0xb2
   jmp alltraps
-801063fa:	e9 6f f4 ff ff       	jmp    8010586e <alltraps>
+801063fa:	e9 78 f4 ff ff       	jmp    80105877 <alltraps>
 
 801063ff <vector179>:
 .globl vector179
@@ -13630,7 +13636,7 @@ vector179:
   pushl $179
 80106401:	68 b3 00 00 00       	push   $0xb3
   jmp alltraps
-80106406:	e9 63 f4 ff ff       	jmp    8010586e <alltraps>
+80106406:	e9 6c f4 ff ff       	jmp    80105877 <alltraps>
 
 8010640b <vector180>:
 .globl vector180
@@ -13640,7 +13646,7 @@ vector180:
   pushl $180
 8010640d:	68 b4 00 00 00       	push   $0xb4
   jmp alltraps
-80106412:	e9 57 f4 ff ff       	jmp    8010586e <alltraps>
+80106412:	e9 60 f4 ff ff       	jmp    80105877 <alltraps>
 
 80106417 <vector181>:
 .globl vector181
@@ -13650,7 +13656,7 @@ vector181:
   pushl $181
 80106419:	68 b5 00 00 00       	push   $0xb5
   jmp alltraps
-8010641e:	e9 4b f4 ff ff       	jmp    8010586e <alltraps>
+8010641e:	e9 54 f4 ff ff       	jmp    80105877 <alltraps>
 
 80106423 <vector182>:
 .globl vector182
@@ -13660,7 +13666,7 @@ vector182:
   pushl $182
 80106425:	68 b6 00 00 00       	push   $0xb6
   jmp alltraps
-8010642a:	e9 3f f4 ff ff       	jmp    8010586e <alltraps>
+8010642a:	e9 48 f4 ff ff       	jmp    80105877 <alltraps>
 
 8010642f <vector183>:
 .globl vector183
@@ -13670,7 +13676,7 @@ vector183:
   pushl $183
 80106431:	68 b7 00 00 00       	push   $0xb7
   jmp alltraps
-80106436:	e9 33 f4 ff ff       	jmp    8010586e <alltraps>
+80106436:	e9 3c f4 ff ff       	jmp    80105877 <alltraps>
 
 8010643b <vector184>:
 .globl vector184
@@ -13680,7 +13686,7 @@ vector184:
   pushl $184
 8010643d:	68 b8 00 00 00       	push   $0xb8
   jmp alltraps
-80106442:	e9 27 f4 ff ff       	jmp    8010586e <alltraps>
+80106442:	e9 30 f4 ff ff       	jmp    80105877 <alltraps>
 
 80106447 <vector185>:
 .globl vector185
@@ -13690,7 +13696,7 @@ vector185:
   pushl $185
 80106449:	68 b9 00 00 00       	push   $0xb9
   jmp alltraps
-8010644e:	e9 1b f4 ff ff       	jmp    8010586e <alltraps>
+8010644e:	e9 24 f4 ff ff       	jmp    80105877 <alltraps>
 
 80106453 <vector186>:
 .globl vector186
@@ -13700,7 +13706,7 @@ vector186:
   pushl $186
 80106455:	68 ba 00 00 00       	push   $0xba
   jmp alltraps
-8010645a:	e9 0f f4 ff ff       	jmp    8010586e <alltraps>
+8010645a:	e9 18 f4 ff ff       	jmp    80105877 <alltraps>
 
 8010645f <vector187>:
 .globl vector187
@@ -13710,7 +13716,7 @@ vector187:
   pushl $187
 80106461:	68 bb 00 00 00       	push   $0xbb
   jmp alltraps
-80106466:	e9 03 f4 ff ff       	jmp    8010586e <alltraps>
+80106466:	e9 0c f4 ff ff       	jmp    80105877 <alltraps>
 
 8010646b <vector188>:
 .globl vector188
@@ -13720,7 +13726,7 @@ vector188:
   pushl $188
 8010646d:	68 bc 00 00 00       	push   $0xbc
   jmp alltraps
-80106472:	e9 f7 f3 ff ff       	jmp    8010586e <alltraps>
+80106472:	e9 00 f4 ff ff       	jmp    80105877 <alltraps>
 
 80106477 <vector189>:
 .globl vector189
@@ -13730,7 +13736,7 @@ vector189:
   pushl $189
 80106479:	68 bd 00 00 00       	push   $0xbd
   jmp alltraps
-8010647e:	e9 eb f3 ff ff       	jmp    8010586e <alltraps>
+8010647e:	e9 f4 f3 ff ff       	jmp    80105877 <alltraps>
 
 80106483 <vector190>:
 .globl vector190
@@ -13740,7 +13746,7 @@ vector190:
   pushl $190
 80106485:	68 be 00 00 00       	push   $0xbe
   jmp alltraps
-8010648a:	e9 df f3 ff ff       	jmp    8010586e <alltraps>
+8010648a:	e9 e8 f3 ff ff       	jmp    80105877 <alltraps>
 
 8010648f <vector191>:
 .globl vector191
@@ -13750,7 +13756,7 @@ vector191:
   pushl $191
 80106491:	68 bf 00 00 00       	push   $0xbf
   jmp alltraps
-80106496:	e9 d3 f3 ff ff       	jmp    8010586e <alltraps>
+80106496:	e9 dc f3 ff ff       	jmp    80105877 <alltraps>
 
 8010649b <vector192>:
 .globl vector192
@@ -13760,7 +13766,7 @@ vector192:
   pushl $192
 8010649d:	68 c0 00 00 00       	push   $0xc0
   jmp alltraps
-801064a2:	e9 c7 f3 ff ff       	jmp    8010586e <alltraps>
+801064a2:	e9 d0 f3 ff ff       	jmp    80105877 <alltraps>
 
 801064a7 <vector193>:
 .globl vector193
@@ -13770,7 +13776,7 @@ vector193:
   pushl $193
 801064a9:	68 c1 00 00 00       	push   $0xc1
   jmp alltraps
-801064ae:	e9 bb f3 ff ff       	jmp    8010586e <alltraps>
+801064ae:	e9 c4 f3 ff ff       	jmp    80105877 <alltraps>
 
 801064b3 <vector194>:
 .globl vector194
@@ -13780,7 +13786,7 @@ vector194:
   pushl $194
 801064b5:	68 c2 00 00 00       	push   $0xc2
   jmp alltraps
-801064ba:	e9 af f3 ff ff       	jmp    8010586e <alltraps>
+801064ba:	e9 b8 f3 ff ff       	jmp    80105877 <alltraps>
 
 801064bf <vector195>:
 .globl vector195
@@ -13790,7 +13796,7 @@ vector195:
   pushl $195
 801064c1:	68 c3 00 00 00       	push   $0xc3
   jmp alltraps
-801064c6:	e9 a3 f3 ff ff       	jmp    8010586e <alltraps>
+801064c6:	e9 ac f3 ff ff       	jmp    80105877 <alltraps>
 
 801064cb <vector196>:
 .globl vector196
@@ -13800,7 +13806,7 @@ vector196:
   pushl $196
 801064cd:	68 c4 00 00 00       	push   $0xc4
   jmp alltraps
-801064d2:	e9 97 f3 ff ff       	jmp    8010586e <alltraps>
+801064d2:	e9 a0 f3 ff ff       	jmp    80105877 <alltraps>
 
 801064d7 <vector197>:
 .globl vector197
@@ -13810,7 +13816,7 @@ vector197:
   pushl $197
 801064d9:	68 c5 00 00 00       	push   $0xc5
   jmp alltraps
-801064de:	e9 8b f3 ff ff       	jmp    8010586e <alltraps>
+801064de:	e9 94 f3 ff ff       	jmp    80105877 <alltraps>
 
 801064e3 <vector198>:
 .globl vector198
@@ -13820,7 +13826,7 @@ vector198:
   pushl $198
 801064e5:	68 c6 00 00 00       	push   $0xc6
   jmp alltraps
-801064ea:	e9 7f f3 ff ff       	jmp    8010586e <alltraps>
+801064ea:	e9 88 f3 ff ff       	jmp    80105877 <alltraps>
 
 801064ef <vector199>:
 .globl vector199
@@ -13830,7 +13836,7 @@ vector199:
   pushl $199
 801064f1:	68 c7 00 00 00       	push   $0xc7
   jmp alltraps
-801064f6:	e9 73 f3 ff ff       	jmp    8010586e <alltraps>
+801064f6:	e9 7c f3 ff ff       	jmp    80105877 <alltraps>
 
 801064fb <vector200>:
 .globl vector200
@@ -13840,7 +13846,7 @@ vector200:
   pushl $200
 801064fd:	68 c8 00 00 00       	push   $0xc8
   jmp alltraps
-80106502:	e9 67 f3 ff ff       	jmp    8010586e <alltraps>
+80106502:	e9 70 f3 ff ff       	jmp    80105877 <alltraps>
 
 80106507 <vector201>:
 .globl vector201
@@ -13850,7 +13856,7 @@ vector201:
   pushl $201
 80106509:	68 c9 00 00 00       	push   $0xc9
   jmp alltraps
-8010650e:	e9 5b f3 ff ff       	jmp    8010586e <alltraps>
+8010650e:	e9 64 f3 ff ff       	jmp    80105877 <alltraps>
 
 80106513 <vector202>:
 .globl vector202
@@ -13860,7 +13866,7 @@ vector202:
   pushl $202
 80106515:	68 ca 00 00 00       	push   $0xca
   jmp alltraps
-8010651a:	e9 4f f3 ff ff       	jmp    8010586e <alltraps>
+8010651a:	e9 58 f3 ff ff       	jmp    80105877 <alltraps>
 
 8010651f <vector203>:
 .globl vector203
@@ -13870,7 +13876,7 @@ vector203:
   pushl $203
 80106521:	68 cb 00 00 00       	push   $0xcb
   jmp alltraps
-80106526:	e9 43 f3 ff ff       	jmp    8010586e <alltraps>
+80106526:	e9 4c f3 ff ff       	jmp    80105877 <alltraps>
 
 8010652b <vector204>:
 .globl vector204
@@ -13880,7 +13886,7 @@ vector204:
   pushl $204
 8010652d:	68 cc 00 00 00       	push   $0xcc
   jmp alltraps
-80106532:	e9 37 f3 ff ff       	jmp    8010586e <alltraps>
+80106532:	e9 40 f3 ff ff       	jmp    80105877 <alltraps>
 
 80106537 <vector205>:
 .globl vector205
@@ -13890,7 +13896,7 @@ vector205:
   pushl $205
 80106539:	68 cd 00 00 00       	push   $0xcd
   jmp alltraps
-8010653e:	e9 2b f3 ff ff       	jmp    8010586e <alltraps>
+8010653e:	e9 34 f3 ff ff       	jmp    80105877 <alltraps>
 
 80106543 <vector206>:
 .globl vector206
@@ -13900,7 +13906,7 @@ vector206:
   pushl $206
 80106545:	68 ce 00 00 00       	push   $0xce
   jmp alltraps
-8010654a:	e9 1f f3 ff ff       	jmp    8010586e <alltraps>
+8010654a:	e9 28 f3 ff ff       	jmp    80105877 <alltraps>
 
 8010654f <vector207>:
 .globl vector207
@@ -13910,7 +13916,7 @@ vector207:
   pushl $207
 80106551:	68 cf 00 00 00       	push   $0xcf
   jmp alltraps
-80106556:	e9 13 f3 ff ff       	jmp    8010586e <alltraps>
+80106556:	e9 1c f3 ff ff       	jmp    80105877 <alltraps>
 
 8010655b <vector208>:
 .globl vector208
@@ -13920,7 +13926,7 @@ vector208:
   pushl $208
 8010655d:	68 d0 00 00 00       	push   $0xd0
   jmp alltraps
-80106562:	e9 07 f3 ff ff       	jmp    8010586e <alltraps>
+80106562:	e9 10 f3 ff ff       	jmp    80105877 <alltraps>
 
 80106567 <vector209>:
 .globl vector209
@@ -13930,7 +13936,7 @@ vector209:
   pushl $209
 80106569:	68 d1 00 00 00       	push   $0xd1
   jmp alltraps
-8010656e:	e9 fb f2 ff ff       	jmp    8010586e <alltraps>
+8010656e:	e9 04 f3 ff ff       	jmp    80105877 <alltraps>
 
 80106573 <vector210>:
 .globl vector210
@@ -13940,7 +13946,7 @@ vector210:
   pushl $210
 80106575:	68 d2 00 00 00       	push   $0xd2
   jmp alltraps
-8010657a:	e9 ef f2 ff ff       	jmp    8010586e <alltraps>
+8010657a:	e9 f8 f2 ff ff       	jmp    80105877 <alltraps>
 
 8010657f <vector211>:
 .globl vector211
@@ -13950,7 +13956,7 @@ vector211:
   pushl $211
 80106581:	68 d3 00 00 00       	push   $0xd3
   jmp alltraps
-80106586:	e9 e3 f2 ff ff       	jmp    8010586e <alltraps>
+80106586:	e9 ec f2 ff ff       	jmp    80105877 <alltraps>
 
 8010658b <vector212>:
 .globl vector212
@@ -13960,7 +13966,7 @@ vector212:
   pushl $212
 8010658d:	68 d4 00 00 00       	push   $0xd4
   jmp alltraps
-80106592:	e9 d7 f2 ff ff       	jmp    8010586e <alltraps>
+80106592:	e9 e0 f2 ff ff       	jmp    80105877 <alltraps>
 
 80106597 <vector213>:
 .globl vector213
@@ -13970,7 +13976,7 @@ vector213:
   pushl $213
 80106599:	68 d5 00 00 00       	push   $0xd5
   jmp alltraps
-8010659e:	e9 cb f2 ff ff       	jmp    8010586e <alltraps>
+8010659e:	e9 d4 f2 ff ff       	jmp    80105877 <alltraps>
 
 801065a3 <vector214>:
 .globl vector214
@@ -13980,7 +13986,7 @@ vector214:
   pushl $214
 801065a5:	68 d6 00 00 00       	push   $0xd6
   jmp alltraps
-801065aa:	e9 bf f2 ff ff       	jmp    8010586e <alltraps>
+801065aa:	e9 c8 f2 ff ff       	jmp    80105877 <alltraps>
 
 801065af <vector215>:
 .globl vector215
@@ -13990,7 +13996,7 @@ vector215:
   pushl $215
 801065b1:	68 d7 00 00 00       	push   $0xd7
   jmp alltraps
-801065b6:	e9 b3 f2 ff ff       	jmp    8010586e <alltraps>
+801065b6:	e9 bc f2 ff ff       	jmp    80105877 <alltraps>
 
 801065bb <vector216>:
 .globl vector216
@@ -14000,7 +14006,7 @@ vector216:
   pushl $216
 801065bd:	68 d8 00 00 00       	push   $0xd8
   jmp alltraps
-801065c2:	e9 a7 f2 ff ff       	jmp    8010586e <alltraps>
+801065c2:	e9 b0 f2 ff ff       	jmp    80105877 <alltraps>
 
 801065c7 <vector217>:
 .globl vector217
@@ -14010,7 +14016,7 @@ vector217:
   pushl $217
 801065c9:	68 d9 00 00 00       	push   $0xd9
   jmp alltraps
-801065ce:	e9 9b f2 ff ff       	jmp    8010586e <alltraps>
+801065ce:	e9 a4 f2 ff ff       	jmp    80105877 <alltraps>
 
 801065d3 <vector218>:
 .globl vector218
@@ -14020,7 +14026,7 @@ vector218:
   pushl $218
 801065d5:	68 da 00 00 00       	push   $0xda
   jmp alltraps
-801065da:	e9 8f f2 ff ff       	jmp    8010586e <alltraps>
+801065da:	e9 98 f2 ff ff       	jmp    80105877 <alltraps>
 
 801065df <vector219>:
 .globl vector219
@@ -14030,7 +14036,7 @@ vector219:
   pushl $219
 801065e1:	68 db 00 00 00       	push   $0xdb
   jmp alltraps
-801065e6:	e9 83 f2 ff ff       	jmp    8010586e <alltraps>
+801065e6:	e9 8c f2 ff ff       	jmp    80105877 <alltraps>
 
 801065eb <vector220>:
 .globl vector220
@@ -14040,7 +14046,7 @@ vector220:
   pushl $220
 801065ed:	68 dc 00 00 00       	push   $0xdc
   jmp alltraps
-801065f2:	e9 77 f2 ff ff       	jmp    8010586e <alltraps>
+801065f2:	e9 80 f2 ff ff       	jmp    80105877 <alltraps>
 
 801065f7 <vector221>:
 .globl vector221
@@ -14050,7 +14056,7 @@ vector221:
   pushl $221
 801065f9:	68 dd 00 00 00       	push   $0xdd
   jmp alltraps
-801065fe:	e9 6b f2 ff ff       	jmp    8010586e <alltraps>
+801065fe:	e9 74 f2 ff ff       	jmp    80105877 <alltraps>
 
 80106603 <vector222>:
 .globl vector222
@@ -14060,7 +14066,7 @@ vector222:
   pushl $222
 80106605:	68 de 00 00 00       	push   $0xde
   jmp alltraps
-8010660a:	e9 5f f2 ff ff       	jmp    8010586e <alltraps>
+8010660a:	e9 68 f2 ff ff       	jmp    80105877 <alltraps>
 
 8010660f <vector223>:
 .globl vector223
@@ -14070,7 +14076,7 @@ vector223:
   pushl $223
 80106611:	68 df 00 00 00       	push   $0xdf
   jmp alltraps
-80106616:	e9 53 f2 ff ff       	jmp    8010586e <alltraps>
+80106616:	e9 5c f2 ff ff       	jmp    80105877 <alltraps>
 
 8010661b <vector224>:
 .globl vector224
@@ -14080,7 +14086,7 @@ vector224:
   pushl $224
 8010661d:	68 e0 00 00 00       	push   $0xe0
   jmp alltraps
-80106622:	e9 47 f2 ff ff       	jmp    8010586e <alltraps>
+80106622:	e9 50 f2 ff ff       	jmp    80105877 <alltraps>
 
 80106627 <vector225>:
 .globl vector225
@@ -14090,7 +14096,7 @@ vector225:
   pushl $225
 80106629:	68 e1 00 00 00       	push   $0xe1
   jmp alltraps
-8010662e:	e9 3b f2 ff ff       	jmp    8010586e <alltraps>
+8010662e:	e9 44 f2 ff ff       	jmp    80105877 <alltraps>
 
 80106633 <vector226>:
 .globl vector226
@@ -14100,7 +14106,7 @@ vector226:
   pushl $226
 80106635:	68 e2 00 00 00       	push   $0xe2
   jmp alltraps
-8010663a:	e9 2f f2 ff ff       	jmp    8010586e <alltraps>
+8010663a:	e9 38 f2 ff ff       	jmp    80105877 <alltraps>
 
 8010663f <vector227>:
 .globl vector227
@@ -14110,7 +14116,7 @@ vector227:
   pushl $227
 80106641:	68 e3 00 00 00       	push   $0xe3
   jmp alltraps
-80106646:	e9 23 f2 ff ff       	jmp    8010586e <alltraps>
+80106646:	e9 2c f2 ff ff       	jmp    80105877 <alltraps>
 
 8010664b <vector228>:
 .globl vector228
@@ -14120,7 +14126,7 @@ vector228:
   pushl $228
 8010664d:	68 e4 00 00 00       	push   $0xe4
   jmp alltraps
-80106652:	e9 17 f2 ff ff       	jmp    8010586e <alltraps>
+80106652:	e9 20 f2 ff ff       	jmp    80105877 <alltraps>
 
 80106657 <vector229>:
 .globl vector229
@@ -14130,7 +14136,7 @@ vector229:
   pushl $229
 80106659:	68 e5 00 00 00       	push   $0xe5
   jmp alltraps
-8010665e:	e9 0b f2 ff ff       	jmp    8010586e <alltraps>
+8010665e:	e9 14 f2 ff ff       	jmp    80105877 <alltraps>
 
 80106663 <vector230>:
 .globl vector230
@@ -14140,7 +14146,7 @@ vector230:
   pushl $230
 80106665:	68 e6 00 00 00       	push   $0xe6
   jmp alltraps
-8010666a:	e9 ff f1 ff ff       	jmp    8010586e <alltraps>
+8010666a:	e9 08 f2 ff ff       	jmp    80105877 <alltraps>
 
 8010666f <vector231>:
 .globl vector231
@@ -14150,7 +14156,7 @@ vector231:
   pushl $231
 80106671:	68 e7 00 00 00       	push   $0xe7
   jmp alltraps
-80106676:	e9 f3 f1 ff ff       	jmp    8010586e <alltraps>
+80106676:	e9 fc f1 ff ff       	jmp    80105877 <alltraps>
 
 8010667b <vector232>:
 .globl vector232
@@ -14160,7 +14166,7 @@ vector232:
   pushl $232
 8010667d:	68 e8 00 00 00       	push   $0xe8
   jmp alltraps
-80106682:	e9 e7 f1 ff ff       	jmp    8010586e <alltraps>
+80106682:	e9 f0 f1 ff ff       	jmp    80105877 <alltraps>
 
 80106687 <vector233>:
 .globl vector233
@@ -14170,7 +14176,7 @@ vector233:
   pushl $233
 80106689:	68 e9 00 00 00       	push   $0xe9
   jmp alltraps
-8010668e:	e9 db f1 ff ff       	jmp    8010586e <alltraps>
+8010668e:	e9 e4 f1 ff ff       	jmp    80105877 <alltraps>
 
 80106693 <vector234>:
 .globl vector234
@@ -14180,7 +14186,7 @@ vector234:
   pushl $234
 80106695:	68 ea 00 00 00       	push   $0xea
   jmp alltraps
-8010669a:	e9 cf f1 ff ff       	jmp    8010586e <alltraps>
+8010669a:	e9 d8 f1 ff ff       	jmp    80105877 <alltraps>
 
 8010669f <vector235>:
 .globl vector235
@@ -14190,7 +14196,7 @@ vector235:
   pushl $235
 801066a1:	68 eb 00 00 00       	push   $0xeb
   jmp alltraps
-801066a6:	e9 c3 f1 ff ff       	jmp    8010586e <alltraps>
+801066a6:	e9 cc f1 ff ff       	jmp    80105877 <alltraps>
 
 801066ab <vector236>:
 .globl vector236
@@ -14200,7 +14206,7 @@ vector236:
   pushl $236
 801066ad:	68 ec 00 00 00       	push   $0xec
   jmp alltraps
-801066b2:	e9 b7 f1 ff ff       	jmp    8010586e <alltraps>
+801066b2:	e9 c0 f1 ff ff       	jmp    80105877 <alltraps>
 
 801066b7 <vector237>:
 .globl vector237
@@ -14210,7 +14216,7 @@ vector237:
   pushl $237
 801066b9:	68 ed 00 00 00       	push   $0xed
   jmp alltraps
-801066be:	e9 ab f1 ff ff       	jmp    8010586e <alltraps>
+801066be:	e9 b4 f1 ff ff       	jmp    80105877 <alltraps>
 
 801066c3 <vector238>:
 .globl vector238
@@ -14220,7 +14226,7 @@ vector238:
   pushl $238
 801066c5:	68 ee 00 00 00       	push   $0xee
   jmp alltraps
-801066ca:	e9 9f f1 ff ff       	jmp    8010586e <alltraps>
+801066ca:	e9 a8 f1 ff ff       	jmp    80105877 <alltraps>
 
 801066cf <vector239>:
 .globl vector239
@@ -14230,7 +14236,7 @@ vector239:
   pushl $239
 801066d1:	68 ef 00 00 00       	push   $0xef
   jmp alltraps
-801066d6:	e9 93 f1 ff ff       	jmp    8010586e <alltraps>
+801066d6:	e9 9c f1 ff ff       	jmp    80105877 <alltraps>
 
 801066db <vector240>:
 .globl vector240
@@ -14240,7 +14246,7 @@ vector240:
   pushl $240
 801066dd:	68 f0 00 00 00       	push   $0xf0
   jmp alltraps
-801066e2:	e9 87 f1 ff ff       	jmp    8010586e <alltraps>
+801066e2:	e9 90 f1 ff ff       	jmp    80105877 <alltraps>
 
 801066e7 <vector241>:
 .globl vector241
@@ -14250,7 +14256,7 @@ vector241:
   pushl $241
 801066e9:	68 f1 00 00 00       	push   $0xf1
   jmp alltraps
-801066ee:	e9 7b f1 ff ff       	jmp    8010586e <alltraps>
+801066ee:	e9 84 f1 ff ff       	jmp    80105877 <alltraps>
 
 801066f3 <vector242>:
 .globl vector242
@@ -14260,7 +14266,7 @@ vector242:
   pushl $242
 801066f5:	68 f2 00 00 00       	push   $0xf2
   jmp alltraps
-801066fa:	e9 6f f1 ff ff       	jmp    8010586e <alltraps>
+801066fa:	e9 78 f1 ff ff       	jmp    80105877 <alltraps>
 
 801066ff <vector243>:
 .globl vector243
@@ -14270,7 +14276,7 @@ vector243:
   pushl $243
 80106701:	68 f3 00 00 00       	push   $0xf3
   jmp alltraps
-80106706:	e9 63 f1 ff ff       	jmp    8010586e <alltraps>
+80106706:	e9 6c f1 ff ff       	jmp    80105877 <alltraps>
 
 8010670b <vector244>:
 .globl vector244
@@ -14280,7 +14286,7 @@ vector244:
   pushl $244
 8010670d:	68 f4 00 00 00       	push   $0xf4
   jmp alltraps
-80106712:	e9 57 f1 ff ff       	jmp    8010586e <alltraps>
+80106712:	e9 60 f1 ff ff       	jmp    80105877 <alltraps>
 
 80106717 <vector245>:
 .globl vector245
@@ -14290,7 +14296,7 @@ vector245:
   pushl $245
 80106719:	68 f5 00 00 00       	push   $0xf5
   jmp alltraps
-8010671e:	e9 4b f1 ff ff       	jmp    8010586e <alltraps>
+8010671e:	e9 54 f1 ff ff       	jmp    80105877 <alltraps>
 
 80106723 <vector246>:
 .globl vector246
@@ -14300,7 +14306,7 @@ vector246:
   pushl $246
 80106725:	68 f6 00 00 00       	push   $0xf6
   jmp alltraps
-8010672a:	e9 3f f1 ff ff       	jmp    8010586e <alltraps>
+8010672a:	e9 48 f1 ff ff       	jmp    80105877 <alltraps>
 
 8010672f <vector247>:
 .globl vector247
@@ -14310,7 +14316,7 @@ vector247:
   pushl $247
 80106731:	68 f7 00 00 00       	push   $0xf7
   jmp alltraps
-80106736:	e9 33 f1 ff ff       	jmp    8010586e <alltraps>
+80106736:	e9 3c f1 ff ff       	jmp    80105877 <alltraps>
 
 8010673b <vector248>:
 .globl vector248
@@ -14320,7 +14326,7 @@ vector248:
   pushl $248
 8010673d:	68 f8 00 00 00       	push   $0xf8
   jmp alltraps
-80106742:	e9 27 f1 ff ff       	jmp    8010586e <alltraps>
+80106742:	e9 30 f1 ff ff       	jmp    80105877 <alltraps>
 
 80106747 <vector249>:
 .globl vector249
@@ -14330,7 +14336,7 @@ vector249:
   pushl $249
 80106749:	68 f9 00 00 00       	push   $0xf9
   jmp alltraps
-8010674e:	e9 1b f1 ff ff       	jmp    8010586e <alltraps>
+8010674e:	e9 24 f1 ff ff       	jmp    80105877 <alltraps>
 
 80106753 <vector250>:
 .globl vector250
@@ -14340,7 +14346,7 @@ vector250:
   pushl $250
 80106755:	68 fa 00 00 00       	push   $0xfa
   jmp alltraps
-8010675a:	e9 0f f1 ff ff       	jmp    8010586e <alltraps>
+8010675a:	e9 18 f1 ff ff       	jmp    80105877 <alltraps>
 
 8010675f <vector251>:
 .globl vector251
@@ -14350,7 +14356,7 @@ vector251:
   pushl $251
 80106761:	68 fb 00 00 00       	push   $0xfb
   jmp alltraps
-80106766:	e9 03 f1 ff ff       	jmp    8010586e <alltraps>
+80106766:	e9 0c f1 ff ff       	jmp    80105877 <alltraps>
 
 8010676b <vector252>:
 .globl vector252
@@ -14360,7 +14366,7 @@ vector252:
   pushl $252
 8010676d:	68 fc 00 00 00       	push   $0xfc
   jmp alltraps
-80106772:	e9 f7 f0 ff ff       	jmp    8010586e <alltraps>
+80106772:	e9 00 f1 ff ff       	jmp    80105877 <alltraps>
 
 80106777 <vector253>:
 .globl vector253
@@ -14370,7 +14376,7 @@ vector253:
   pushl $253
 80106779:	68 fd 00 00 00       	push   $0xfd
   jmp alltraps
-8010677e:	e9 eb f0 ff ff       	jmp    8010586e <alltraps>
+8010677e:	e9 f4 f0 ff ff       	jmp    80105877 <alltraps>
 
 80106783 <vector254>:
 .globl vector254
@@ -14380,7 +14386,7 @@ vector254:
   pushl $254
 80106785:	68 fe 00 00 00       	push   $0xfe
   jmp alltraps
-8010678a:	e9 df f0 ff ff       	jmp    8010586e <alltraps>
+8010678a:	e9 e8 f0 ff ff       	jmp    80105877 <alltraps>
 
 8010678f <vector255>:
 .globl vector255
@@ -14390,7 +14396,7 @@ vector255:
   pushl $255
 80106791:	68 ff 00 00 00       	push   $0xff
   jmp alltraps
-80106796:	e9 d3 f0 ff ff       	jmp    8010586e <alltraps>
+80106796:	e9 dc f0 ff ff       	jmp    80105877 <alltraps>
 8010679b:	66 90                	xchg   %ax,%ax
 8010679d:	66 90                	xchg   %ax,%ax
 8010679f:	90                   	nop
@@ -14566,7 +14572,7 @@ mappages(pde_t *pgdir, void *va, uint size, uint pa, int perm)
 80106899:	c3                   	ret    
       panic("remap");
 8010689a:	83 ec 0c             	sub    $0xc,%esp
-8010689d:	68 88 79 10 80       	push   $0x80107988
+8010689d:	68 8c 79 10 80       	push   $0x8010798c
 801068a2:	e8 e9 9a ff ff       	call   80100390 <panic>
 801068a7:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
 801068ae:	66 90                	xchg   %ax,%ax
@@ -14812,15 +14818,15 @@ lcr3(uint val)
 80106aee:	e9 bd d9 ff ff       	jmp    801044b0 <popcli>
     panic("switchuvm: no process");
 80106af3:	83 ec 0c             	sub    $0xc,%esp
-80106af6:	68 8e 79 10 80       	push   $0x8010798e
+80106af6:	68 92 79 10 80       	push   $0x80107992
 80106afb:	e8 90 98 ff ff       	call   80100390 <panic>
     panic("switchuvm: no pgdir");
 80106b00:	83 ec 0c             	sub    $0xc,%esp
-80106b03:	68 b9 79 10 80       	push   $0x801079b9
+80106b03:	68 bd 79 10 80       	push   $0x801079bd
 80106b08:	e8 83 98 ff ff       	call   80100390 <panic>
     panic("switchuvm: no kstack");
 80106b0d:	83 ec 0c             	sub    $0xc,%esp
-80106b10:	68 a4 79 10 80       	push   $0x801079a4
+80106b10:	68 a8 79 10 80       	push   $0x801079a8
 80106b15:	e8 76 98 ff ff       	call   80100390 <panic>
 80106b1a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
 
@@ -14877,7 +14883,7 @@ lcr3(uint val)
 80106b87:	e9 84 db ff ff       	jmp    80104710 <memmove>
     panic("inituvm: more than a page");
 80106b8c:	83 ec 0c             	sub    $0xc,%esp
-80106b8f:	68 cd 79 10 80       	push   $0x801079cd
+80106b8f:	68 d1 79 10 80       	push   $0x801079d1
 80106b94:	e8 f7 97 ff ff       	call   80100390 <panic>
 80106b99:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
 
@@ -14967,11 +14973,11 @@ lcr3(uint val)
 80106c49:	c3                   	ret    
       panic("loaduvm: address should exist");
 80106c4a:	83 ec 0c             	sub    $0xc,%esp
-80106c4d:	68 e7 79 10 80       	push   $0x801079e7
+80106c4d:	68 eb 79 10 80       	push   $0x801079eb
 80106c52:	e8 39 97 ff ff       	call   80100390 <panic>
     panic("loaduvm: addr must be page aligned");
 80106c57:	83 ec 0c             	sub    $0xc,%esp
-80106c5a:	68 88 7a 10 80       	push   $0x80107a88
+80106c5a:	68 8c 7a 10 80       	push   $0x80107a8c
 80106c5f:	e8 2c 97 ff ff       	call   80100390 <panic>
 80106c64:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
 80106c6b:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
@@ -15038,7 +15044,7 @@ lcr3(uint val)
 80106cf4:	75 ba                	jne    80106cb0 <allocuvm+0x40>
       cprintf("allocuvm out of memory\n");
 80106cf6:	83 ec 0c             	sub    $0xc,%esp
-80106cf9:	68 05 7a 10 80       	push   $0x80107a05
+80106cf9:	68 09 7a 10 80       	push   $0x80107a09
 80106cfe:	e8 ad 99 ff ff       	call   801006b0 <cprintf>
   if(newsz >= oldsz)
 80106d03:	8b 45 0c             	mov    0xc(%ebp),%eax
@@ -15084,7 +15090,7 @@ lcr3(uint val)
 80106d52:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
       cprintf("allocuvm out of memory (2)\n");
 80106d58:	83 ec 0c             	sub    $0xc,%esp
-80106d5b:	68 1d 7a 10 80       	push   $0x80107a1d
+80106d5b:	68 21 7a 10 80       	push   $0x80107a21
 80106d60:	e8 4b 99 ff ff       	call   801006b0 <cprintf>
   if(newsz >= oldsz)
 80106d65:	8b 45 0c             	mov    0xc(%ebp),%eax
@@ -15201,7 +15207,7 @@ freevm(pde_t *pgdir)
 80106e34:	e9 37 b6 ff ff       	jmp    80102470 <kfree>
     panic("freevm: no pgdir");
 80106e39:	83 ec 0c             	sub    $0xc,%esp
-80106e3c:	68 39 7a 10 80       	push   $0x80107a39
+80106e3c:	68 3d 7a 10 80       	push   $0x80107a3d
 80106e41:	e8 4a 95 ff ff       	call   80100390 <panic>
 80106e46:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
 80106e4d:	8d 76 00             	lea    0x0(%esi),%esi
@@ -15321,7 +15327,7 @@ clearpteu(pde_t *pgdir, char *uva)
 80106f0f:	c3                   	ret    
     panic("clearpteu");
 80106f10:	83 ec 0c             	sub    $0xc,%esp
-80106f13:	68 4a 7a 10 80       	push   $0x80107a4a
+80106f13:	68 4e 7a 10 80       	push   $0x80107a4e
 80106f18:	e8 73 94 ff ff       	call   80100390 <panic>
 80106f1d:	8d 76 00             	lea    0x0(%esi),%esi
 
@@ -15440,11 +15446,11 @@ bad:
 80106ff4:	eb cd                	jmp    80106fc3 <copyuvm+0xa3>
       panic("copyuvm: page not present");
 80106ff6:	83 ec 0c             	sub    $0xc,%esp
-80106ff9:	68 6e 7a 10 80       	push   $0x80107a6e
+80106ff9:	68 72 7a 10 80       	push   $0x80107a72
 80106ffe:	e8 8d 93 ff ff       	call   80100390 <panic>
       panic("copyuvm: pte should exist");
 80107003:	83 ec 0c             	sub    $0xc,%esp
-80107006:	68 54 7a 10 80       	push   $0x80107a54
+80107006:	68 58 7a 10 80       	push   $0x80107a58
 8010700b:	e8 80 93 ff ff       	call   80100390 <panic>
 
 80107010 <uva2ka>:

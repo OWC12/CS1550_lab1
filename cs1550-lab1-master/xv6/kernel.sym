@@ -211,7 +211,7 @@
 80102510 freerange
 80106180 vector125
 80106c70 allocuvm
-80105886 trapret
+8010588f trapret
 801065bb vector216
 80105f52 vector63
 80105e05 vector26
@@ -342,6 +342,7 @@
 80112780 cpus
 80104340 releasesleep
 80106072 vector95
+80105870 sys_getcount
 80104510 holding
 801109c0 sb
 80104560 acquire
@@ -351,7 +352,7 @@
 80105ea7 vector44
 8011267c lapic
 80105fd9 vector78
-8010586e alltraps
+80105877 alltraps
 801063b7 vector173
 80106138 vector117
 80105ffd vector82
