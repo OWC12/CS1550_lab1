@@ -89,6 +89,10 @@ found:
   p->state = EMBRYO;
   p->pid = nextpid++;
 
+  for(int i = 0; i < 22; i++){
+	p->syscs[i] = 0;
+  }
+
   release(&ptable.lock);
 
   // Allocate kernel stack.
